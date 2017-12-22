@@ -51,8 +51,8 @@ async def on_command_error(error, ctx):
     elif isinstance(error, commands.CommandNotFound):
       await bot.send_message(ctx.message.channel, "**:x: | That command was not found! Type ?help for a list of commands.（￣～￣;）**")
 
-    elif isinstance(error, commands.InvalidArgument):
-      await bot.send_message(ctx.message.channel, f'**:x: | Invalid argument in command {ctx.command}. (」ﾟﾛﾟ)｣**')
+   # elif isinstance(error, commands.InvalidArgument):
+      #await bot.send_message(ctx.message.channel, f'**:x: | Invalid argument in command {ctx.command}. (」ﾟﾛﾟ)｣**')
 
     print('Ignoring exception in command {}:'.format(ctx.command), file = sys.stderr)
     traceback.print_exception(type(error), error, error.__traceback__, file = sys.stderr)
