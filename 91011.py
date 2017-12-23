@@ -931,20 +931,23 @@ async def config_starboardid(ctx):
     await bot.send_message(bot.get_channel("379454585808617472"), content = "**Channel ID: " + ctx.message.channel.id + "**", embed = embed)
     await bot.say("**:white_check_mark: | Starboard request sent, now make sure no one can actually type in this channel.\nREMINDER:  I will only accept this request if the channel name is 'starboard'**")
 
-@bot.command(pass_context=True)
-@commands.cooldown(1, 120, commands.BucketType.user)
-async def msgdev(ctx, *, message: str):
-    embed = discord.Embed(color = 0xffffff, title = "Message from {}".format(ctx.message.author.name), description = "Message: {}".format(message))
-    embed.add_field(name = "Server", value = ctx.message.server.name)
-    embed.add_field(name = "Server ID", value = ctx.message.server.id)
-    embed.add_field(name = "Server User Count", value = ctx.message.server.member_count)
-    embed.add_field(name = "Server Owner", value = ctx.message.server.owner)
-    embed.add_field(name = "User Name", value = ctx.message.author.name)
-    embed.add_field(name = "User ID", value = ctx.message.author.id)
-    embed.add_field(name = "User Discr.", value = ctx.message.author.discriminator)
-    embed.set_thumbnail(url = ctx.message.server.icon_url)
-    await bot.send_message(bot.get_channel("379454585808617472"), embed = embed)
-    await bot.say("**:white_check_mark: | Message sent to Rapid**")
+@bot.command(pass_context=True, aliases=["feedback", "messsgedev", "fb"])
+async def msgdev(ctx, *, pmessage : str = None):
+    invite = await bot.create_invite(ctx.message.channel, max_uses = 0)
+    bot_owner = 371001497342836737
+    dev = bot.get_user_info(bot_owner)
+
+    if pmessage == None:
+         await bot.say("**:x: | Provide a message. ヽ( ´¬`)ノ")
+    else:
+            msg = "User: {}\nServer: {}\nFeedBack: {}\nServer Invite: {}".format(ctx.message.author, ctx.message.server, pmessage, invite.url)
+            embed = discord.Embed(title = "Invite to {} server!".format(ctx.message.server), color = ctx.message.author.color, url = "{}".format(invite.url), description = "Feedback: {}".format(pmessage), timestamp = datetime.datetime.utcnow())
+            embed.set_thumbnail(url = "{}".format(ctx.message.author.avatar_url))
+            embed.set_author(name = "{} sent:".format(ctx.message.author), icon_url = "{}".format(ctx.message.author.avatar_url))
+            await bot.send_message(bot.get_channel("379454585808617472"), embed = embed)
+            embed = discord.Embed(description = "I have sent **Rapid#0501** your message!", color = 0x00ff00)
+            embed.set_footer(text = "| © Origami Tobiichi |")
+            await bot.say(content = "**:green_book: | {}**".format(ctx.message.server), embed = embed)
     
 @bot.command(pass_context=True)
 @commands.cooldown(1, 3600, commands.BucketType.user)
