@@ -816,11 +816,11 @@ async def tutPING():
     embed.set_author(name = "Example 1 of {}".format(oo))
     await bot.say(embed = embed)
 
-#@bot.command()
-#async def tutBASICBOT():
-#    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description ="Simple **Bot setup.**\n```import discord\n\nbot = commands.Bot(command_prefix='PREFIX')\n\n@bot.event\nasync def on_ready():\n    print('I'm Ready!')\n\n@bot.command()\nasync def ping():\n    await bot.say('Pong!')\n\nbot.run('TOKEN')$
-#    embed.set_author(name = "Example 2 of {}".format(oo))
-#    await bot.say(embed = embed)
+@bot.command()
+async def tutBASICBOT():
+    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description ="Simple **Bot setup.**\n```import discord\n\nbot = commands.Bot(command_prefix='PREFIX')\n\n@bot.event\nasync def on_ready():\n    print('I'm Ready!')\n\n@bot.command()\nasync def ping():\n    await bot.say('Pong!')\n\nbot.run('TOKEN')```")
+    embed.set_author(name = "Example 2 of {}".format(oo))
+    await bot.say(embed = embed)
 
 #@bot.command()
 #async def tutCOINFLIP():
