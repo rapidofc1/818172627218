@@ -1,5 +1,4 @@
 git+https://github.com/Rapptz/discord.py@async                                                                         import pyowm
-import traceback
 import os
 import sys
 import sqlite3
