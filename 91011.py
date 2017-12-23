@@ -768,7 +768,7 @@ async def urband(*msg):
             await bot.say(embed=embed)
 
         else:
-                embed = discord.Embed(title = 'Urban Dictionary - ' + word, color = 0xf75959)
+                embed = discord.Embed(title = 'Urban Dictionary - ' + word, color = 0x8f07ff)
                 embed.description = response['list'][0]['definition']
                 embed.set_thumbnail(url = "https://images-ext-2.discordapp.net/external/B4lcjSHEDA8RcuizSOAdc92ithHovZT6WkRAX-da_6o/https/erisbot.com/assets/emojis/urbandictionary.png")
                 embed.add_field(name = "Examples:", value = response['list'][0]["example"][:1000])
