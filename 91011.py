@@ -330,7 +330,7 @@ async def ping():
     await bot.edit_message(pingms, "**:ping_pong: | Pong!** (%.01f seconds)" % ping)
 
 @bot.command()
-async def pong(ctx):
+async def pong():
     pongtime = time.time()
     pongms = await bot.say("Ponging...")
     pong = time.time() - pongtime
