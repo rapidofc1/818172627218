@@ -284,32 +284,6 @@ async def yomomma(ctx):
     embed = discord.Embed(color = 0x8805fc, description = joke)
     embed.set_author(name = "Yo momma joke", icon_url = ctx.message.author.avatar_url)
     await bot.say(embed = embed)
-    
-@bot.command(pass_context=True)
-async def chucknorris(ctx):
-    joke_url = 'https://api.chucknorris.io/jokes/random'
-    async with aiohttp.ClientSession() as session:
-        async with session.get(joke_url) as data:
-            joke_data = await data.read()
-            joke_json = json.loads(joke_data)
-    joke = joke_json['value']
-    embed = discord.Embed(color = 0xff6f02, description = joke)
-    embed.set_author(name = "Chuck Norris joke", icon_url = ctx.message.author.avatar_url)
-    await bot.say(embed = embed)
-
-@bot.command(pass_context=True)
-async def yomomma(ctx):
-    resource = 'http://api.yomomma.info/'
-    async with aiohttp.ClientSession() as session:
-        async with session.get(resource) as data:
-            data = await data.read()
-            data = json.loads(data)
-    joke = data['joke']
-    if not joke.endswith('.'):
-        joke += '.'
-    embed = discord.Embed(color = 0x8805fc, description = joke)
-    embed.set_author(name = "Yo momma joke", icon_url = ctx.message.author.avatar_url)
-    await bot.say(embed = embed)
 
 @bot.command(pass_context=True)
 async def insult(ctx, user: discord.Member = None):
