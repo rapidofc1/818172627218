@@ -285,7 +285,7 @@ async def yomomma(ctx):
     embed.set_author(name = "Yo momma joke", icon_url = ctx.message.author.avatar_url)
     await bot.say(embed = embed)
     
-    @bot.command(pass_context=True)
+@bot.command(pass_context=True)
 async def chucknorris(ctx):
     joke_url = 'https://api.chucknorris.io/jokes/random'
     async with aiohttp.ClientSession() as session:
