@@ -882,11 +882,11 @@ async def tutERRORHANDLER():
     embed.set_author(name = "Example 12 of {}".format(oo))
     await bot.say(embed = embed)
 
-#@bot.command()
-#async def tutSETGAME():
-    #embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple command for setting the bots **playing status** on command```@bot.command(pass_context=True, aliases=['setg', 'sg'])\nasync def setgame(ctx, *, text):\n    if ctx.message.author.id == 'YOUR ID': < this will make the command on$
-    #embed.set_author(name = "Example 13 of {}".format(oo))
-    #await bot.say(embed = embed)
+@bot.command()
+async def tutSETGAME():
+    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple command for setting the bots **playing status** on command```@bot.command(pass_context=True, aliases=['setg', 'sg'])\nasync def setgame(ctx, *, text):\n    if ctx.message.author.id == 'YOUR ID': < this will make the command only accessible by you.\n      game = discord.Game(name='%s'% text)\n      await bot.change_status(game)\n      await bot.say('Done!')```")
+    embed.set_author(name = "Example 13 of {}".format(oo))
+    await bot.say(embed = embed)
 
 #@bot.command()
 #async def tutTERMUX():
