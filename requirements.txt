@@ -1,5 +1,4 @@
 git+https://github.com/Rapptz/discord.py@async
-import openweathermapy.core as weather
 import unicodedata
 import youtube_dl                                                                                     import pyowm
 import traceback
