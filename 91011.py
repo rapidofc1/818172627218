@@ -506,7 +506,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(l$
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **67**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -614,27 +614,27 @@ async def roll():
 async def kill(ctx, *, member: discord.Member = None):
     if member.id == ctx.message.author.id:
         embed = discord.Embed(description = "Call **911**", color = 0xff0000)
-        embed.set_image(url = (random.choice(["http://4.bp.blogspot.com/-FL6mKTZOk94/UBb_9EuAYNI/AAAAAAAAOco/JWsTlyInMeQ/s400/Jean+Reno.gif", "https://cdn.discordapp.com/attachments/385625038444822539/393441155636789248/giphy-5.gif", "https://cdn.discordapp.com/attachments/385625038444822539/393441425477337108/200w-3.$
+        #embed.set_image(url = (random.choice(["http://4.bp.blogspot.com/-FL6mKTZOk94/UBb_9EuAYNI/AAAAAAAAOco/JWsTlyInMeQ/s400/Jean+Reno.gif", "https://cdn.discordapp.com/attachments/385625038444822539/393441155636789248/giphy-5.gif", "https://cdn.discordapp.com/attachments/385625038444822539/393441425477337108/200w-3.$
         await bot.say(embed = embed)
     else:
         embed = discord.Embed(description = "**{}** Was killed by **{}** ".format(member.name, ctx.message.author.name),color = ctx.message.author.color)
-        embed.set_image(url = (random.choice(["https://discordapp.com/oauth2/authorize?client_id=385622427977121813&scope=bot&permissions=2146958591", "https://cdn.discordapp.com/attachments/385625038444822539/393056123311226901/giphy-3.gif", "https://cdn.discordapp.com/attachments/385625038444822539/39305612331122690$
+        #embed.set_image(url = (random.choice(["https://discordapp.com/oauth2/authorize?client_id=385622427977121813&scope=bot&permissions=2146958591", "https://cdn.discordapp.com/attachments/385625038444822539/393056123311226901/giphy-3.gif", "https://cdn.discordapp.com/attachments/385625038444822539/39305612331122690$
         await bot.say(embed = embed)
 
 @bot.command(pass_context=True)
 async def hug(ctx, *, member: discord.Member = None):
     if member.id == ctx.message.author.id:
         embed = discord.Embed(description = "**{}** hugged themself".format(ctx.message.author.name), color = 0xff0000)
-        embed.set_image(url = (random.choice([])))
+        #embed.set_image(url = (random.choice([])))
         await bot.say(embed = embed)
     else:
         embed = discord.Embed(description = "**{}** hugged **{}** ".format(ctx.message.author.name, member.name),color = ctx.message.author.color)
-        embed.set_image(url = (random.choice(["https://cdn.discordapp.com/attachments/379454585808617472/393445391229648898/giphy_s-1.gif", "https://cdn.discordapp.com/attachments/379454585808617472/393445390680326145/giphy-16.gif", "https://cdn.discordapp.com/attachments/379454585808617472/393445390164164609/giphy-17$
+        #embed.set_image(url = (random.choice(["https://cdn.discordapp.com/attachments/379454585808617472/393445391229648898/giphy_s-1.gif", "https://cdn.discordapp.com/attachments/379454585808617472/393445390680326145/giphy-16.gif", "https://cdn.discordapp.com/attachments/379454585808617472/393445390164164609/giphy-17$
         await bot.say(embed = embed)
 
 @bot.command(name="8ball")
 async def _ball():
-    await bot.say(random.choice([":8ball:  |  Obviously", ":8ball:  | I'm not sure", ":8ball:  |  Yes", ":8ball:  |  No", ":8ball:  |  It is certain", ":8ball:  |  No shit", ":8ball:  |  Ofcourse", ":8ball:  |  ...", ":8ball:  |  To be honest, who would even know", ":8ball:  |  It is believed so", ":8ball:  |  It's be$
+    await bot.say(random.choice([":8ball:  |  Obviously", ":8ball:  | I'm not sure", ":8ball:  |  Yes", ":8ball:  |  No", ":8ball:  |  It is certain", ":8ball:  |  No shit", ":8ball:  |  Ofcourse", ":8ball:  |  ...", ":8ball:  |  To be honest, who would even know", ":8ball:  |  It is believed so", ":8ball:  |  It's best you do not talk about it"]))
 
 @bot.command()
 async def shoot():
@@ -642,7 +642,7 @@ async def shoot():
 
 @bot.command()
 async def dicklength():
-    await bot.say(random.choice([":straight_ruler:  |  8==D 3 inches... small asf", ":straight_ruler:  |  8=========D 10 inches... jesus wtf, your definately gettin\' laid", ":straight_ruler:  |  8D bro...", ":straight_ruler:  |  8========================D 27 INCHES....... bro your a GOD", ":straight_ruler:  |  8====D$
+    await bot.say(random.choice([":straight_ruler:  |  8==D 3 inches... small asf", ":straight_ruler:  |  8=========D 10 inches... jesus wtf, your definately gettin\' laid", ":straight_ruler:  |  8D bro...", ":straight_ruler:  |  8========================D 27 INCHES....... bro your a GOD", ":straight_ruler:  |  8====D 5 inches... typical asf"]))
 
 @bot.command()
 async def amicool():
@@ -868,17 +868,17 @@ async def tutPING():
     embed.set_author(name = "Example 1 of {}".format(oo))
     await bot.say(embed = embed)
 
-@bot.command()
-async def tutBASICBOT():
-    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description ="Simple **Bot setup.**\n```import discord\n\nbot = commands.Bot(command_prefix='PREFIX')\n\n@bot.event\nasync def on_ready():\n    print('I'm Ready!')\n\n@bot.command()\nasync def ping():\n    await bot.say('Pong!')\n\nbot.run('TOKEN')$
-    embed.set_author(name = "Example 2 of {}".format(oo))
-    await bot.say(embed = embed)
+#@bot.command()
+#async def tutBASICBOT():
+#    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description ="Simple **Bot setup.**\n```import discord\n\nbot = commands.Bot(command_prefix='PREFIX')\n\n@bot.event\nasync def on_ready():\n    print('I'm Ready!')\n\n@bot.command()\nasync def ping():\n    await bot.say('Pong!')\n\nbot.run('TOKEN')$
+#    embed.set_author(name = "Example 2 of {}".format(oo))
+#    await bot.say(embed = embed)
 
-@bot.command()
-async def tutCOINFLIP():
-    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple **Coinflip** command.```@bot.command()\nasync def coinflip():\n    choice = random.randint(1,2)\n    if choice == 1:\n       await bot.say('**:hear_no_evil:  |  Heads!**')\n    if choice == 2:\n       await bot.say('**:monkey:$
-    embed.set_author(name = "Example 3 of {}".format(oo))
-    await bot.say(embed = embed)
+#@bot.command()
+#async def tutCOINFLIP():
+#    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple **Coinflip** command.```@bot.command()\nasync def coinflip():\n    choice = random.randint(1,2)\n    if choice == 1:\n       await bot.say('**:hear_no_evil:  |  Heads!**')\n    if choice == 2:\n       await bot.say('**:monkey:$
+#    embed.set_author(name = "Example 3 of {}".format(oo))
+#    await bot.say(embed = embed)
 
 @bot.command()
 async def tutSAY():
@@ -886,17 +886,17 @@ async def tutSAY():
     embed.set_author(name = "Example 4 of {}".format(oo))
     await bot.say(embed = embed)
 
-@bot.command()
-async def tutONSERVERJOIN():
-    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "An easy to make **on_server_join** event.```@bot.event\nasync def on_server_join(server):\n    print('I have joined {.name}!'.format(server))\n    await bot.send_message(server.owner, 'ANY MESSAGE TO SEND TO THE OWNER OF THE SERVER Y$
-    embed.set_author(name = "Example 5 of {}".format(oo))
-    await bot.say(embed = embed)
+#@bot.command()
+#async def tutONSERVERJOIN():
+#    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "An easy to make **on_server_join** event.```@bot.event\nasync def on_server_join(server):\n    print('I have joined {.name}!'.format(server))\n    await bot.send_message(server.owner, 'ANY MESSAGE TO SEND TO THE OWNER OF THE SERVER Y$
+#    embed.set_author(name = "Example 5 of {}".format(oo))
+#    await bot.say(embed = embed)
 
-@bot.command()
-async def tutONMESSAGE():
-    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "An easy to make **on_message** event. (random message)```@bot.event\nasync def on_message(message):\n    if 'test' in message.content:\n      await bot.send_message(message.channel, (random.choice(['Yes?', 'No', 'Sure', 'lol'])))\n  $
-    embed.set_author(name = "Example 6 of {}".format(oo))
-    await bot.say(embed = embed)
+#@bot.command()
+#async def tutONMESSAGE():
+#    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "An easy to make **on_message** event. (random message)```@bot.event\nasync def on_message(message):\n    if 'test' in message.content:\n      await bot.send_message(message.channel, (random.choice(['Yes?', 'No', 'Sure', 'lol'])))\n  $
+#    embed.set_author(name = "Example 6 of {}".format(oo))
+#    await bot.say(embed = embed)
 
 @bot.command()
 async def tutTYPES():
@@ -928,23 +928,23 @@ async def tutEMOJIS():
     embed.set_author(name = "Example 11 of {}".format(oo))
     await bot.say(embed = embed)
 
-@bot.command()
-async def tutERRORHANDLER():
-    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple **command error handler**```@bot.event\nasync def on_command_error(error, ctx):\n    if isinstance(error, commands.CommandOnCooldown):\n      await bot.send_message(ctx.message.channel, 'This command is on cooldown.')\n\n    e$
-    embed.set_author(name = "Example 12 of {}".format(oo))
-    await bot.say(embed = embed)
+#@bot.command()
+#async def tutERRORHANDLER():
+    #embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple **command error handler**```@bot.event\nasync def on_command_error(error, ctx):\n    if isinstance(error, commands.CommandOnCooldown):\n      await bot.send_message(ctx.message.channel, 'This command is on cooldown.')\n\n    e$
+    #embed.set_author(name = "Example 12 of {}".format(oo))
+    #await bot.say(embed = embed)
 
-@bot.command()
-async def tutSETGAME():
-    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple command for setting the bots **playing status** on command```@bot.command(pass_context=True, aliases=['setg', 'sg'])\nasync def setgame(ctx, *, text):\n    if ctx.message.author.id == 'YOUR ID': < this will make the command on$
-    embed.set_author(name = "Example 13 of {}".format(oo))
-    await bot.say(embed = embed)
+#@bot.command()
+#async def tutSETGAME():
+    #embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple command for setting the bots **playing status** on command```@bot.command(pass_context=True, aliases=['setg', 'sg'])\nasync def setgame(ctx, *, text):\n    if ctx.message.author.id == 'YOUR ID': < this will make the command on$
+    #embed.set_author(name = "Example 13 of {}".format(oo))
+    #await bot.say(embed = embed)
 
-@bot.command()
-async def tutTERMUX():
-    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple setup for coding on Android, with Termux.\nPart 1\nWhen you first open Termux, you need to do a few things:\n1. `pkg install nano`\n2. `pkg install python or nodejs`\n3. `pkg install git`\n4. `pip install discord`\n`Nano` let'$
-    embed.set_author(name = "Example 14 of {}".format(oo))
-    await bot.say(embed = embed)
+#@bot.command()
+#async def tutTERMUX():
+    #embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple setup for coding on Android, with Termux.\nPart 1\nWhen you first open Termux, you need to do a few things:\n1. `pkg install nano`\n2. `pkg install python or nodejs`\n3. `pkg install git`\n4. `pip install discord`\n`Nano` let'$
+    #embed.set_author(name = "Example 14 of {}".format(oo))
+    #await bot.say(embed = embed)
     
 @bot.command(pass_context=True)
 async def tutinfo(ctx):
