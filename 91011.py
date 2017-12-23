@@ -1147,7 +1147,7 @@ async def help_8ball():
     
 @bot.command()
 async def betatesters():
-    em = discord.Embed(color = 0x0596ff, title = "Beta Testers", description = "**Rapid#0501\nDankXXlol**")
+    em = discord.Embed(color = 0x0596ff, title = "Beta Testers", description = "**Rapid#0501\nDankXXlol#6659**")
     await bot.say(embed = em)
     
 bot.loop.create_task(my_background_task())
