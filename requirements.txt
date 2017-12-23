@@ -1,5 +1,6 @@
-git+https://github.com/Rapptz/discord.py@async                                                                         import pyowm
-import random                                                                                         import asyncio
+git+https://github.com/Rapptz/discord.py@async
+mport pyowm
+Import asyncio
 from datetime import datetime
 import aiohttp
 import json
