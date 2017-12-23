@@ -986,7 +986,7 @@ async def help(ctx):
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` | `suggestion` | `msgdev` | `setup_starboard` | `faq` | `betatesters`")
    embed.add_field(name = "Utility Commands", value = "`charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `say` | `embedsay` | `urband` | `advert`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `rapidify` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
-   embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `mute` | `warn`")
+   embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `mute` | `warn` | `gbans`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `add` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Discord.py Async HowTo's", value = "`tutBASICBOT` | `tutPING` | `tutSAY` | `tutCOINFLIP` | `tutONMESSAGE` | `tutONSERVERJOIN` | `tutTYPES` | `tutSERVERS` | `tutMEMBERS` | `tutCHANNELS` | `tutEMOJIS` | `tutERRORHANDLER` | `tutSETGAME` | `tutTERMUX`")
    embed.set_footer(text = "| © Cosmos ", icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
@@ -1127,6 +1127,13 @@ async def help_warn():
     h.add_field(name = "Usage", value = "`?warn <@user> <reason>`")
     h.add_field(name = "Note", value = "Disabled (WIP)")
     await bot.say(embed = h)
+    
+@bot.command()
+async def help_gbans():
+    h = discord.Embed(title = "Gbans Command", color = 0x6691D9, description = "Fetches all banned members in the server")
+    h.add_field(name = "Usage", value = "`?gbans`")
+    h.add_field(name = "Note", value = "Empty...")
+    await bot.say(embed = h)
 
 @bot.command()
 async def help_mute():
@@ -1154,6 +1161,13 @@ async def betatesters():
     em = discord.Embed(color = 0x0596ff, title = "Beta Testers", description = "**Rapid#0501\nDankXXlol#6659**")
     await bot.say(embed = em)
     
+@bot.command(aliases=["getbans", "bans"], pass_context=True)
+async def gbans(ctx):
+    x = await bot.get_bans(ctx.message.server)
+    x = '\n'.join([y.name for y in x])
+    embed = discord.Embed(title = "Banned Members for {}".format(ctx.message.server.name), description = x, color = 0x596ff)
+    await bot.say(embed = embed)
+
 bot.loop.create_task(my_background_task())
 if not os.environ.get('TOKEN'):
     print("no token found!")
