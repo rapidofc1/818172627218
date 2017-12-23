@@ -822,11 +822,11 @@ async def tutBASICBOT():
     embed.set_author(name = "Example 2 of {}".format(oo))
     await bot.say(embed = embed)
 
-#@bot.command()
-#async def tutCOINFLIP():
-#    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple **Coinflip** command.```@bot.command()\nasync def coinflip():\n    choice = random.randint(1,2)\n    if choice == 1:\n       await bot.say('**:hear_no_evil:  |  Heads!**')\n    if choice == 2:\n       await bot.say('**:monkey:$
-#    embed.set_author(name = "Example 3 of {}".format(oo))
-#    await bot.say(embed = embed)
+@bot.command()
+async def tutCOINFLIP():
+    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple **Coinflip** command.```@bot.command()\nasync def coinflip():\n    choice = random.randint(1,2)\n    if choice == 1:\n       await bot.say('**:hear_no_evil:  |  Heads!**')\n    if choice == 2:\n       await bot.say('**:monkey:  |  Tails!**')```")
+    embed.set_author(name = "Example 3 of {}".format(oo))
+    await bot.say(embed = embed)
 
 @bot.command()
 async def tutSAY():
