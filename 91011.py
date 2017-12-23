@@ -932,6 +932,7 @@ async def config_starboardid(ctx):
     await bot.say("**:white_check_mark: | Starboard request sent, now make sure no one can actually type in this channel.\nREMINDER:  I will only accept this request if the channel name is 'starboard'**")
 
 @bot.command(pass_context=True, aliases=["feedback", "messsgedev", "fb"])
+@commands.cooldown(1, 120, commands.BucketType.user)
 async def msgdev(ctx, *, pmessage : str = None):
     invite = await bot.create_invite(ctx.message.channel, max_uses = 0)
     bot_owner = 371001497342836737
