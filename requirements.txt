@@ -1,5 +1,4 @@
 git+https://github.com/Rapptz/discord.py@async                                                                         import pyowm
-import sqlite3
 import discord
 from discord.ext import commands
 import random                                                                                         import asyncio
