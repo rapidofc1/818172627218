@@ -654,7 +654,7 @@ async def starterpack():
     
 @bot.command(pass_context=True)
 async def userinfo(ctx, user: discord.Member):
-    if user.id == "371001497342836737":
+    f user.id == "371001497342836737":
       embed = discord.Embed(color = ctx.message.author.color, description = "Game Status: {}".format(user.game))
       embed.add_field(name = "NAME", value = user.name)
       embed.add_field(name = "DISCORD ID", value = format(user.id))
@@ -663,7 +663,7 @@ async def userinfo(ctx, user: discord.Member):
       embed.set_footer(text = "Account made at {}".format(user.created_at))
       embed.set_thumbnail(url = format(user.avatar_url))
       await bot.say(content = "Information on **" + user.name + "#" + user.discriminator + "**", embed = embed)
-    if user.id in["371001497342836737", "389819327039406080"]:
+    elif user.id in["371001497342836737", "389819327039406080"]:
       embed = discord.Embed(color = ctx.message.author.color, description = "Game Status: {}".format(user.game))
       embed.add_field(name = "NAME", value = user.name)
       embed.add_field(name = "DISCORD ID", value = format(user.id))
