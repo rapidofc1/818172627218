@@ -654,7 +654,7 @@ async def starterpack():
     
 @bot.command(pass_context=True)
 async def userinfo(ctx, user: discord.Member):
-    f user.id == "371001497342836737":
+    if user.id == "371001497342836737":
       embed = discord.Embed(color = ctx.message.author.color, description = "Game Status: {}".format(user.game))
       embed.add_field(name = "NAME", value = user.name)
       embed.add_field(name = "DISCORD ID", value = format(user.id))
