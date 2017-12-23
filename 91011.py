@@ -876,11 +876,11 @@ async def tutEMOJIS():
     embed.set_author(name = "Example 11 of {}".format(oo))
     await bot.say(embed = embed)
 
-#@bot.command()
-#async def tutERRORHANDLER():
-    #embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple **command error handler**```@bot.event\nasync def on_command_error(error, ctx):\n    if isinstance(error, commands.CommandOnCooldown):\n      await bot.send_message(ctx.message.channel, 'This command is on cooldown.')\n\n    e$
-    #embed.set_author(name = "Example 12 of {}".format(oo))
-    #await bot.say(embed = embed)
+@bot.command()
+async def tutERRORHANDLER():
+    embed = discord.Embed(title = "Cosmos Examples", color = 0xfffa02, description = "Simple **command error handler**```@bot.event\nasync def on_command_error(error, ctx):\n    if isinstance(error, commands.CommandOnCooldown):\n      await bot.send_message(ctx.message.channel, 'This command is on cooldown.')\n\n    elif isinstance(error, commands.CommandNotFound):\n      await bot.send_message(ctx.message.channel, 'This command was not found.')```\nMake the **cooldown** command```@bot.command()\n@commands.cooldown(1, 30, commands.BucketType.user)\nasync def blah():\n    await bot.say('Wasgud :D')```\n__**Definitions**__:book:\n`1, 30` - **1** command every **30** seconds.")
+    embed.set_author(name = "Example 12 of {}".format(oo))
+    await bot.say(embed = embed)
 
 #@bot.command()
 #async def tutSETGAME():
