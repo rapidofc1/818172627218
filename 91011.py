@@ -1225,6 +1225,41 @@ async def gbans(ctx):
     embed = discord.Embed(title = "Banned Members for {}".format(ctx.message.server.name), description = x, color = 0x596ff)
     await bot.say(embed = embed)
 
+@bot.command(pass_context=True)
+async def war(ctx):
+    cards = {2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10', 11: 'Jack', 12: 'Queen', 13: 'King', 14: 'Ace'}
+    member = ctx.message.author.name
+    player = random.randint(2, 14)
+    dealer = random.randint(2, 14)
+    msg = await bot.say("**:shield: | Shuffling the cards...**")
+    await asyncio.sleep(2.0)
+    await bot.edit_message(msg, "**:shield: | Shuffling the cards...\nDealing...**")
+    await asyncio.sleep(2.0)
+    await bot.edit_message(msg, f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**')
+    if int(player) > int(dealer):
+        await asyncio.sleep(2.0)
+        await bot.edit_message(msg, f'**:shield: | Shuffling the cards...\nDealing...\n------{member}-----**\n`Player: ' + cards[player] + '`\n`Dealer: ' + cards[dealer] + '`\n**:tada: | You won {}!**'.format(ctx.message.author.name))
+    elif int(player) < int(dealer):
+        await asyncio.sleep(2.0)
+        await bot.edit_message(msg, f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' +cards[player] + '`\n`Dealer: ' + cards[dealer] + '`\n**:skull_crossbones: | You lost {}.**'.format(ctx.message.author.name))
+    else:
+        await asyncio.sleep(2.0)
+        player2 = random.randit(2, 14)
+        player3 = random.randit(2, 14)
+        player4 = random.randit(2, 14)
+        dealer2 = random.randit(2, 14)
+        dealer3 = random.randit(2, 14)
+        dealer4 = random.randit(2, 14)
+        if int(player4) > int(dealer4):
+            await asyncio.sleep(2.0)
+            await bot.edit_message(msg, f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' + cards[player] + '`, ' + cards[player2] + ', ' + cards[player3] + ', `**Deciding Card: **' + cards[player4] + '`\nDealer: ' + cards[dealer] + '`, ' + cards[dealer2] + ', ' + cards[dealer3] + ', `**Deciding Card: **' + cards[dealer4] + '`\n**:tada: | You won {}!**'.format(ctx.message.author.name))
+        elif int(player4) < int(dealer4):
+            await asyncio.sleep(2.0)
+            await bot.edit_message(msg, f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' +cards[player] + '`, ' + cards[player2] + ', ' + cards[player3] + ', `**Deciding Card: **' + cards[player4] + '`\nDealer: ' +cards[dealer] + '`, ' + cards[dealer2] + ', ' + cards[dealer3] + ', `**Deciding Card: **' + cards[dealer4] + '`\n**:skull_crossbones: | You lost {}.**'.format(ctx.message.author.name))
+        else:
+            await asyncio.sleep(2.0)
+            await bot.edit_message(msg, '**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' +cards[player] + '`, ' + cards[player2] + ', ' + cards[player3] + ', `**Deciding Card: **' + cards[player4] + '`\nDealer: ' +cards[dealer] + '`, ' + cards[dealer2] + ', ' + cards[dealer3] + ', `**Deciding Card: **' + cards[dealer4] + '`\n**:crossed_swords: | {}, it is a tie!**'.format(ctx.message.author.name))
+    
 bot.loop.create_task(my_background_task())
 if not os.environ.get('TOKEN'):
     print("no token found!")
