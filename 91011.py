@@ -66,7 +66,6 @@ async def my_background_task():
         await asyncio.sleep(23.5)
 
 class Pasta:
-    """Ravioli, ravioli, use the bot to spam-ioli."""
 
     def __init__(self, bot):
         self.bot = bot
