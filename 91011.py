@@ -356,7 +356,7 @@ async def slots(ctx):
         message = f':flag_white: | You lost {ctx.message.author.name}.'
 
     msg = await bot.say(f'**:slot_machine: | {ctx.message.author.name} rolled the slots...**')
-    await asyncio.sleep(2.0)[B
+    await asyncio.sleep(2.0)
     await bot.edit_message(msg, f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...**')
     await asyncio.sleep(2.0)
     await bot.edit_message(msg, f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...\n------{ctx.message.author.name}------**')
