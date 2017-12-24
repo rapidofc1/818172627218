@@ -384,14 +384,14 @@ async def slots(ctx):
     else:
         message = f':flag_white: | You lost {ctx.message.author.name}.'
 
-    msg = await bot.say(f'**:slot_machine: | {ctx.message.author.name} rolled the slots...**')
+    embed = await bot.say(embed=discord.Embed(color=0xffffff, description=f'**:slot_machine: | {ctx.message.author.name} rolled the slots...**'))
     await asyncio.sleep(2.0)
-    await bot.edit_message(msg, f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...**')
+    await bot.edit_message(embed, embed=discord.Embed(color=0xffffff, description=f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...**'))
     await asyncio.sleep(2.0)
-    await bot.edit_message(msg, f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...\n------{ctx.message.author.name}------**')
+    await bot.edit_message(embed, embed=discord.Embed(color=0xffffff, description=f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...\n------{ctx.message.author.name}------**'))
     await asyncio.sleep(2.0)
-    await bot.edit_message(msg, f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...\n------{ctx.message.author.name}------\n`{a} | {b} | {c}`\n{message}**')
-    
+    await bot.edit_message(embed, embed=discord.Embed(color=0xffffff, description=f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...\n------{ctx.message.author.name}------\n`{a} | {b} | {c}`\n{message}**'))
+
 @bot.command()
 async def count():
     co = await bot.say("Beginning...")
