@@ -336,8 +336,8 @@ async def pong():
     pong = time.time() - pongtime
     await bot.edit_message(pongms, "**:ping_pong: | Ping!** (%.01f seconds)" % pong)
     
-@bot.command()
-async def reverse(text : str):
+@bot.command(pass_context=True)
+async def reverse(ctx,*, text : str):
     reverse = text[::-1].replace("@", "@\u200B").replace("&", "&\u200B")
     await bot.say(f'{reverse}')
 
