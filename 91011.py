@@ -18,6 +18,7 @@ import datetime
 import time
 from bs4 import BeautifulSoup
 import ftfy
+from cosmos_sql import PastaSQL
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("?"))
 bot.remove_command ('help')
