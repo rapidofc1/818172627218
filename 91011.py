@@ -480,7 +480,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **74**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **78**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -557,29 +557,85 @@ async def add(left : int, right : int):
 @bot.command()
 async def roll():
     await bot.say(random.choice(["**:game_die:  |  You rolled a 1!**", "**:game_die:  |  You rolled a 2!**", "**:game_die:  |  You rolled a 3!**", "**:game_die:  |  You rolled a 4!**", "**:game_die:  |  You rolled a 5!**", "**:game_die:  |  You rolled a 6!**"]))
-    
+
 @bot.command(pass_context=True)
 async def kill(ctx, *, member: discord.Member = None):
     if member.id == ctx.message.author.id:
-        embed = discord.Embed(description = "Call **911**", color = 0xff0000)
-        #embed.set_image(url = (random.choice(["http://4.bp.blogspot.com/-FL6mKTZOk94/UBb_9EuAYNI/AAAAAAAAOco/JWsTlyInMeQ/s400/Jean+Reno.gif", "https://cdn.discordapp.com/attachments/385625038444822539/393441155636789248/giphy-5.gif", "https://cdn.discordapp.com/attachments/385625038444822539/393441425477337108/200w-3.$
+        embed = discord.Embed(description = (random.choice(["Call **911,** {} just attempted suicide".format(ctx.message.author.name),
+                                                            "{} just tried to kill themself!!!".format(ctx.message.author.name),
+                                                            "Prep the stone, {} just died.... :(".format(ctx.message.author.name),
+                                                            "WE NEED AN ABULANCE!!! {} MIGHT HAVE JUST DIED".format(ctx.message.author.name),
+                                                            "{} decided to leave us, he'll be missed.".format(ctx.message.author.name)])), color = ctx.message.author.color)
         await bot.say(embed = embed)
     else:
-        embed = discord.Embed(description = "**{}** Was killed by **{}** ".format(member.name, ctx.message.author.name),color = ctx.message.author.color)
-        #embed.set_image(url = (random.choice(["https://discordapp.com/oauth2/authorize?client_id=385622427977121813&scope=bot&permissions=2146958591", "https://cdn.discordapp.com/attachments/385625038444822539/393056123311226901/giphy-3.gif", "https://cdn.discordapp.com/attachments/385625038444822539/39305612331122690$
+        embed = discord.Embed(description = "**{}** was killed by **{}** ".format(member.name, ctx.message.author.name), color = ctx.message.author.color)
         await bot.say(embed = embed)
 
 @bot.command(pass_context=True)
 async def hug(ctx, *, member: discord.Member = None):
     if member.id == ctx.message.author.id:
-        embed = discord.Embed(description = "**{}** hugged themself".format(ctx.message.author.name), color = 0xff0000)
-        #embed.set_image(url = (random.choice([])))
+        embed = discord.Embed(description = (random.choice(["So **sad,** {} just hugged themself lmao".format(ctx.message.author.name),
+                                                            "{} just hugged em' self".format(ctx.message.author.name),
+                                                            "{} didn't wanna hug anyone else, no love for us... :(".format(ctx.message.author.name),
+                                                            "{} looks like a good hugger, hey, could you give us some o' dat? :o".format(ctx.message.author.name),
+                                                            "{} hugged no one but his hallow shell".format(ctx.message.author.name)])), color = ctx.message.author.color)
         await bot.say(embed = embed)
     else:
-        embed = discord.Embed(description = "**{}** hugged **{}** ".format(ctx.message.author.name, member.name),color = ctx.message.author.color)
-        #embed.set_image(url = (random.choice(["https://cdn.discordapp.com/attachments/379454585808617472/393445391229648898/giphy_s-1.gif", "https://cdn.discordapp.com/attachments/379454585808617472/393445390680326145/giphy-16.gif", "https://cdn.discordapp.com/attachments/379454585808617472/393445390164164609/giphy-17$
+        embed = discord.Embed(description = "Adorable, **{}** hugged **{}** ".format(ctx.message.author.name, member.name), color = ctx.message.author.color)
         await bot.say(embed = embed)
 
+@bot.command(pass_context=True)
+async def kiss(ctx, *, member: discord.Member = None):
+    if member.id == ctx.message.author.id:
+        embed = discord.Embed(description = (random.choice(["AHHAHA {} kissed themself... what a shame".format(ctx.message.author.name),
+                                                            "{} just kissed em' self".format(ctx.message.author.name),
+                                                            "Kisses! Oh wait nevermind, just for {}".format(ctx.message.author.name),
+                                                            "{} kissed\n\n\n\n\n\n\n\n\n\n\n\n\n\n THEMSELF".format(ctx.message.author.name),
+                                                            "{} kissed his own body, ew".format(ctx.message.author.name)])), color = ctx.message.author.color)
+        await bot.say(embed = embed)
+    else:
+        embed = discord.Embed(description = "**{}** kissed **{}**, aweeeee ".format(ctx.message.author.name, member.name), color = ctx.message.author.color)
+        await bot.say(embed = embed)
+
+@bot.command(pass_context=True)
+async def punch(ctx, *, member: discord.Member = None):
+    if member.id == ctx.message.author.id:
+        embed = discord.Embed(description = (random.choice(["Erm {} punched... themself??".format(ctx.message.author.name),
+                                                            "{} just flippin' punched em' self".format(ctx.message.author.name),
+                                                            "~PUNCH~ watchout, {} is on a punching rampage".format(ctx.message.author.name),
+                                                            "{} punched out his eye, physco much".format(ctx.message.author.name),
+                                                            "{} just punched themself... lol".format(ctx.message.author.name)])), color = ctx.message.author.color)
+        await bot.say(embed = embed)
+    else:
+        embed = discord.Embed(description = "**{}** just punched **{}**, dayuuuumm ".format(ctx.message.author.name, member.name), color = ctx.message.author.color)
+        await bot.say(embed = embed)
+
+@bot.command(pass_context=True)
+async def slap(ctx, *, member: discord.Member = None):
+    if member.id == ctx.message.author.id:
+        embed = discord.Embed(description = (random.choice(["Ouch, {} slapped themself".format(ctx.message.author.name),
+                                                            "What in Trap Nation is {} doing?! They slapped themself, lmao".format(ctx.message.author.name),
+                                                            "Slaps for everyone! Oh wait, you're all in luck, I guess just {}".format(ctx.message.author.name),
+                                                            "{} slapped himself right across his on FaCcEee".format(ctx.message.author.name),
+                                                            "{} slapped {}".format(ctx.message.author.name, ctx.message.author.name)])), color = ctx.message.author.color)
+        await bot.say(embed = embed)
+    else:
+        embed = discord.Embed(description = "Watchout guys... **{}** slapped **{}** for what appears to be no reason... ouch ".format(ctx.message.author.name, member.name), color = ctx.message.author.color)
+        await bot.say(embed = embed)
+
+@bot.command(pass_context=True)
+async def beatup(ctx, *, member: discord.Member = None):
+    if member.id == ctx.message.author.id:
+        embed = discord.Embed(description = (random.choice(["AHHAHA {} beat themself up into a ball... what a shame".format(ctx.message.author.name),
+                                                            "{} smh, what a weirdo".format(ctx.message.author.name),
+                                                            "{} beat up his own damn body, what is up with his head".format(ctx.message.author.name),
+                                                            "{} is your head on right... or?".format(ctx.message.author.name),
+                                                            "{} is beating himself ;D".format(ctx.message.author.name)])), color = ctx.message.author.color)
+        await bot.say(embed = embed)
+    else:
+        embed = discord.Embed(description = "Damn, **{}** took a hard beating from this dood named **{}**, aweeeee ".format(member.name, ctx.message.author.name), color = ctx.message.author.color)
+        await bot.say(embed = embed)
+        
 @bot.command(name="8ball")
 async def _ball():
     await bot.say(random.choice([":8ball:  |  Obviously", ":8ball:  | I'm not sure", ":8ball:  |  Yes", ":8ball:  |  No", ":8ball:  |  It is certain", ":8ball:  |  No shit", ":8ball:  |  Ofcourse", ":8ball:  |  ...", ":8ball:  |  To be honest, who would even know", ":8ball:  |  It is believed so", ":8ball:  |  It's best you do not talk about it"]))
@@ -975,7 +1031,7 @@ async def advert(ctx):
     await bot.send_message(bot.get_channel("393669769649192960"), embed = embed)
     await bot.send_message(ctx.message.author, "Thanks for your advertisement! If you'd like to check it out you can join Cosmos's Hub at https://discord.gg/pDvJZEN")
     
-cmds = "74"
+cmds = "78"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -987,7 +1043,7 @@ async def help(ctx):
    embed.add_field(name = "Utility Commands", value = "`suggestion` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `say` | `embedsay` | `urband` | `advert`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `rapidify` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
    embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `mute` | `warn` | `gbans`")
-   embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `add` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
+   embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `add` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Discord.py Async HowTo's", value = "`tutBASICBOT` | `tutPING` | `tutSAY` | `tutCOINFLIP` | `tutONMESSAGE` | `tutONSERVERJOIN` | `tutTYPES` | `tutSERVERS` | `tutMEMBERS` | `tutCHANNELS` | `tutEMOJIS` | `tutERRORHANDLER` | `tutSETGAME` | `tutTERMUX`")
    embed.set_footer(text = "| © Cosmos ", icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.set_thumbnail(url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
