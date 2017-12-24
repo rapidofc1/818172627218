@@ -22,20 +22,6 @@ import ftfy
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("?"))
 bot.remove_command ('help')
 
-async def on_command_completion(ctx):
-    bot.commands_used[ctx.command.name] += 1
-    await asyncio.sleep(5.0)
-    try:
-        await bot.message.delete()
-    except Exceptation as e:
-        print(e)
-
-def is_owner_check(message):
-    return  message.author.id == "371001497342836737"
-
-def is_owner():
-    return commands.check(lambda ctx: is_owner_check(ctx.message))
-
 @bot.event
 async def on_ready():
     print("------------")
@@ -77,6 +63,39 @@ async def my_background_task():
         await asyncio.sleep(21.5)
         await bot.change_presence(game=discord.Game(name="Christmas Music | Prefix = ?"))
         await asyncio.sleep(23.5)
+        
+@bot.command(pass_context=True)
+async def afk(ctx,*,reason : str):
+    user = ctx.message.author
+    msg = ctx.message
+    afk = open('afk.json').read()
+    afk = json.loads(afk)
+    afk[user.id] = reason
+    afk = json.dumps(afk)
+    await bot.say("**:door: | You are now AFK: {}**".format(reason))
+    with open('afk.json', 'w') as f:
+        f.write(afk)
+
+async def on_message(message):
+    user = ctx.message.author
+    channel = ctx.message.channel
+    afk = open('afk.json').read()
+    afk = json.loads(afk)
+    if user.id in afk:
+        del afk[user.id]
+        await bot.send_message(channel, "**You are now back from being AFK.**")
+    else:
+        mentions = message.mentions
+        for member in mentions:
+            if member.id in afk:
+                em = discord.Embed(color = 0x0f6bff, description = "That user is currently AFK!")
+                em.add_field(name = "Reason", value = "{}".format(afk[member.id]))
+                em.set_thumbnail(url = member.avatar_url)
+                await bot.send_message(channel, content = "**:door: | {} is AFK!**".format(member.name), embed = em)
+    afk = json.dumps(afk)
+    with open('afk.json') as f:
+        f.write(afk)
+    await bot.process_commands(message)
         
 @bot.command(aliases=["s", "st", "star"], pass_context=True)
 async def starboard(ctx,*, message: str):
