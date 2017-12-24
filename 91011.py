@@ -337,6 +337,16 @@ async def pong():
     await bot.edit_message(pongms, "**:ping_pong: | Ping!** (%.01f seconds)" % pong)
     
 @bot.command(pass_context=True)
+async def rate(ctx,*, thing : str):
+    numbers = random.randint(0, 100)
+    decimals = random.randint(0, 9)
+
+    if numbers == 100:
+        decimals = 0
+
+    await bot.say(f"**:arrows_clockwise: | I'd rate {thing} a `{numbers}.{decimals}/100`**")
+    
+@bot.command(pass_context=True)
 async def reverse(ctx,*, text : str):
     reverse = text[::-1].replace("@", "@\u200B").replace("&", "&\u200B")
     await bot.say(f'{reverse}')
@@ -507,7 +517,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **82**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **83**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1070,7 +1080,7 @@ async def help(ctx):
    embed.add_field(name = "Utility Commands", value = "`suggestion` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `say` | `embedsay` | `urband` | `advert`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `rapidify` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
    embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `mute` | `warn` | `gbans`")
-   embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `add` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
+   embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `add` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "MiniGame Commands", value = "`war` | `slots`")
    embed.add_field(name = "Discord.py Async HowTo's", value = "`tutBASICBOT` | `tutPING` | `tutSAY` | `tutCOINFLIP` | `tutONMESSAGE` | `tutONSERVERJOIN` | `tutTYPES` | `tutSERVERS` | `tutMEMBERS` | `tutCHANNELS` | `tutEMOJIS` | `tutERRORHANDLER` | `tutSETGAME` | `tutTERMUX`")
    embed.set_footer(text = "| © Cosmos ", icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
@@ -1086,6 +1096,27 @@ async def help_virus():
     h.add_field(name = "Note", value = "Don't overuse this")
     await bot.say(embed = h)
 
+@bot.command()
+async def help_rate():
+    h = discord.Embed(title = "Rate Command", color = 0x6691D9, description = "Rates your message out of 100")
+    h.add_field(name = "Usage", value = "`?rate <message>`")
+    h.add_field(name = "Note", value = "Empty...")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_war():
+    h = discord.Embed(title = "War Command", color = 0x6691D9, description = "Begin a simple card game")
+    h.add_field(name = "Usage", value = "`?war`")
+    h.add_field(name = "Note", value = "Don't overuse this")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_slots():
+    h = discord.Embed(title = "Slots Command", color = 0x6691D9, description = "Spins the slot machine")
+    h.add_field(name = "Usage", value = "`?slots`")
+    h.add_field(name = "Note", value = "Don't overuse this")
+    await bot.say(embed = h)
+    
 @bot.command()
 async def help_setup_starboard():
     h = discord.Embed(title = "Setup_starboard Command", color = 0x6691D9, description = "Begins a setup wizard for the beta starboard")
