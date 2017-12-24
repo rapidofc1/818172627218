@@ -67,33 +67,33 @@ async def my_background_task():
 
 class Pasta:
 
-    def __init__(self, bot):
-        self.bot = bot
-        self.db = PastaSQL()
-        # self.cursor.execute('''CREATE TABLE pasta
-        # (pasta_tag text, pasta_text text, creator_id text, creation_date text,
-        # uses integer, likes integer, dislikes integer)''')
+    def __init__(self, bot):
+        self.bot = bot
+        self.db = PastaSQL()
+        # self.cursor.execute('''CREATE TABLE pasta
+        # (pasta_tag text, pasta_text text, creator_id text, creation_date text,
+        # uses integer, likes integer, dislikes integer)''')
 
-    @commands.command(pass_context=True, aliases=['p'])
-    async def pasta(self, ctx):
-        cmd = await self.extract_cmd_text(ctx, 1)
-        """Call up a user-submitted pasta"""
-        if len(cmd) <= 0:
-            e = await utilities.error_embed("Please state which pasta you would like to identify.")
-            await self.bot.say(embed=e)
-            return
-        if self.db.exists(cmd[0]):
-            pasta_msg = self.db.get(cmd[0])
-            new_uses = int(pasta_msg[1]) + 1
-            self.db.update_uses(new_uses, cmd[0])
-            await self.bot.say(pasta_msg[0])
-            return
-        else:
-            e = await utilities.error_embed("That pasta doesn't exist!")
-            await self.bot.say(embed=e)
-            return
+    @bot.command(pass_context=True, aliases=['p'])
+    async def pasta(self, ctx):
+        cmd = await self.extract_cmd_text(ctx, 1)
+        """Call up a user-submitted pasta"""
+        if len(cmd) <= 0:
+            e = await utilities.error_embed("Please state which pasta you would like to identify.")
+            await self.bot.say(embed=e)
+            return
+         if self.db.exists(cmd[0]):
+            pasta_msg = self.db.get(cmd[0])
+            new_uses = int(pasta_msg[1]) + 1
+            self.db.update_uses(new_uses, cmd[0])
+            await self.bot.say(pasta_msg[0])
+            return
+        else:
+            e = await utilities.error_embed("That pasta doesn't exist!")
+            await self.bot.say(embed=e)
+            return
 
-    @commands.command(pass_context=True, aliases=['cp'])
+    @bot.command(pass_context=True, aliases=['cp'])
     async def createpasta(self, ctx):
         """Make your very own pasta!"""
         cmd = await self.extract_cmd_text(ctx, 2)
@@ -116,7 +116,7 @@ class Pasta:
         await self.bot.say("If you're reading this, tell the developer he's an idiot.")
         return
 
-    @commands.command(pass_context=True, aliases=['ip'])
+    @bot.command(pass_context=True, aliases=['ip'])
     async def infopasta(self, ctx):
         """Get information about a pasta"""
         cmd = await self.extract_cmd_text(ctx, 1)
@@ -138,12 +138,12 @@ class Pasta:
         await self.bot.say(embed=e)
         return
 
-    @commands.command(pass_context=True, aliases=['lp'])
+    @bot.command(pass_context=True, aliases=['lp'])
     async def lovepasta(self, ctx):
         """Show your love for a pasta."""
         await self.vote_pasta(ctx, True)
 
-    @commands.command(pass_context=True, aliases=['hp'])
+    @bot.command(pass_context=True, aliases=['hp'])
     async def hatepasta(self, ctx):
         """Hate on a pasta. You monster."""
         await self.vote_pasta(ctx, False)
@@ -152,7 +152,7 @@ class Pasta:
         e = await utilities.wip_embed()
         await self.bot.say(embed=e)
 
-    @commands.command(pass_context=True, aliases=['dp'])
+    @bot.command(pass_context=True, aliases=['dp'])
     async def deletepasta(self, ctx):
         """Remove a pasta. Accidents happen."""
         cmd = await self.extract_cmd_text(ctx, 1)
@@ -178,7 +178,7 @@ class Pasta:
         await self.bot.say(embed=e)
         return
     
-    @commands.command(aliases=['pp'])
+    @bot.command(aliases=['pp'])
     async def poppasta(self):
         """This command shows the most used pastas"""
         e = discord.Embed()
@@ -191,13 +191,13 @@ class Pasta:
                 e.add_field(name=item[0], value=item[1])
         await self.bot.say(embed=e)
 
-    @commands.command(pass_context=True, aliases=['tp'])
+    @bot.command(pass_context=True, aliases=['tp'])
     async def toppasta(self, ctx):
         """This command shows the most loved pastas!"""
         e = await utilities.wip_embed()
         await self.bot.say(embed=e)
 
-    @commands.command(pass_context=True, aliases=['mp'])
+    @bot.command(pass_context=True, aliases=['mp'])
     async def mypasta(self, ctx):
         """"""
         if ctx.message.mentions:
@@ -220,7 +220,7 @@ class Pasta:
         e = await utilities.error_embed("Uh-oh! {} have any pastas!".format(user_name))
         await self.bot.say(embed=e)
 
-    @commands.command(pass_context=True, aliases=['ep'])
+    @bot.command(pass_context=True, aliases=['ep'])
     async def editpasta(self, ctx):
         cmd = await self.extract_cmd_text(ctx, 2)
         user_id = ctx.message.author.id
@@ -241,7 +241,7 @@ class Pasta:
         await self.bot.say(embed=e)
         return
 
-    @commands.command(pass_context=True, aliases=['sp'])
+    @bot.command(pass_context=True, aliases=['sp'])
     async def searchpasta(self, ctx):
         cmd = ctx.message.content.split(' ', 2)[1:]
         if len(cmd) <= 0:
