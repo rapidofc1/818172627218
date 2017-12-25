@@ -876,7 +876,8 @@ async def add(left,right):
     await bot.say("**:ledger: | That equals: {}**".format(answer))
 
 @bot.command()
-async def subtract(left,right):                                                                                                                                     answer=int(left) - int(right)
+async def subtract(left,right):
+    answer=int(left) - int(right)
     await bot.say("**:ledger: | That equals: {}**".format(answer))
 
 @bot.command()
