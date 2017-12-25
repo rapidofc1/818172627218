@@ -894,6 +894,15 @@ async def multiply(left,right):
 async def roll():
     await bot.say(random.choice(["**:game_die:  |  You rolled a 1!**", "**:game_die:  |  You rolled a 2!**", "**:game_die:  |  You rolled a 3!**", "**:game_die:  |  You rolled a 4!**", "**:game_die:  |  You rolled a 5!**", "**:game_die:  |  You rolled a 6!**"]))
 
+@bot.command(name='is')
+async def _is(left, right):
+    left = int(left)
+    right = int(right)
+    if int(left) > int(right):
+        await bot.say("**:ledger: | {} is greater than {}**".format(left, right))
+    elif int(left) < int(right):
+        await bot.say("**:ledger: | {} is less than {}**".format(left, right))
+    
 @bot.command(pass_context=True)
 async def kill(ctx, *, member: discord.Member = None):
     if member.id == ctx.message.author.id:
