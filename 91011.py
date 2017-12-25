@@ -1506,7 +1506,7 @@ async def gbans(ctx):
 @bot.command(pass_context=True)
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def timer(ctx, seconds : int):
-    e = discord.Embed(title = "Set a timer", color = 0x8f07ff, description = ":timer: | {}, I'll remind you in {} seconds.".for$
+    e = discord.Embed(title = "Set a timer", color = 0x8f07ff, description = ":timer: | {}, I'll remind you in {} seconds.".format(ctx.message.author.name, seconds))
     e.set_thumbnail(url = ctx.message.author.avatar_url)
     await bot.say(embed = e)
     await asyncio.sleep(seconds)
