@@ -338,6 +338,70 @@ async def christmas(ctx):
     embed.set_author(name = "Christmas Countdown!", icon_url = ctx.message.author.avatar_url)
     await bot.say(content = "Requested by **" + ctx.message.author.name + "**", embed = embed)
 
+@bot.command(aliases=["hall"], pass_context=True)
+async def halloween(ctx):
+    now = datetime.datetime.utcnow()
+    xmas = datetime.datetime(now.year, 10, 31)
+    if xmas<now:
+        xmas = xmas.replace(year = now.year+1)
+    delta=xmas-now
+    weeks, remainder = divmod(int(delta.total_seconds()), 604800)
+    days, remainder2 = divmod(remainder, 86400)
+    hours, remainder3 = divmod(remainder2, 3600)
+    minutes, seconds = divmod(remainder3, 60)
+    embed = discord.Embed(color = 0xff5405)
+    embed.add_field(name = ":candy: Time left until Halloween :lollipop:", value = f"{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.")
+    embed.set_author(name = "Halloween Countdown!", icon_url = ctx.message.author.avatar_url)
+    await bot.say(content = "Requested by **" + ctx.message.author.name + "**", embed = embed)
+
+@bot.command(aliases=["eas"], pass_context=True)
+async def easter(ctx):
+    now = datetime.datetime.utcnow()
+    xmas = datetime.datetime(now.year, 4, 1)
+    if xmas<now:
+        xmas = xmas.replace(year = now.year+1)
+    delta=xmas-now
+    weeks, remainder = divmod(int(delta.total_seconds()), 604800)
+    days, remainder2 = divmod(remainder, 86400)
+    hours, remainder3 = divmod(remainder2, 3600)
+    minutes, seconds = divmod(remainder3, 60)
+    embed = discord.Embed(color = 0xffe8dd)
+    embed.add_field(name = ":chocolate_bar: Time left until Easter :egg:", value = f"{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.")
+    embed.set_author(name = "Easter Countdown!", icon_url = ctx.message.author.avatar_url)
+    await bot.say(content = "Requested by **" + ctx.message.author.name + "**", embed = embed)
+
+@bot.command(aliases=["val"], pass_context=True)
+async def valentines(ctx):
+    now = datetime.datetime.utcnow()
+    xmas = datetime.datetime(now.year, 2, 14)
+    if xmas<now:
+        xmas = xmas.replace(year = now.year+1)
+    delta=xmas-now
+    weeks, remainder = divmod(int(delta.total_seconds()), 604800)
+    days, remainder2 = divmod(remainder, 86400)
+    hours, remainder3 = divmod(remainder2, 3600)
+    minutes, seconds = divmod(remainder3, 60)
+    embed = discord.Embed(color = 0xff0000)
+    embed.add_field(name = "gift_heart: Time left until Valentines Day :ribbon:", value = f"{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.")
+    embed.set_author(name = "Valentines Day Countdown!", icon_url = ctx.message.author.avatar_url)
+    await bot.say(content = "Requested by **" + ctx.message.author.name + "**", embed = embed)
+    
+@bot.command(aliases=["saint"], pass_context=True)
+async def saintpatrick(ctx):
+    now = datetime.datetime.utcnow()
+    xmas = datetime.datetime(now.year, 3, 17)
+    if xmas<now:
+        xmas = xmas.replace(year = now.year+1)
+    delta=xmas-now
+    weeks, remainder = divmod(int(delta.total_seconds()), 604800)
+    days, remainder2 = divmod(remainder, 86400)
+    hours, remainder3 = divmod(remainder2, 3600)
+    minutes, seconds = divmod(remainder3, 60)
+    embed = discord.Embed(color = 0x56ff5c)
+    embed.add_field(name = ":four_leaf_clover: Time left until Saint Patricks Day :crown:", value = f"{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.")
+    embed.set_author(name = "Saint Patricks Day Countdown!", icon_url = ctx.message.author.avatar_url)
+    await bot.say(content = "Requested by **" + ctx.message.author.name + "**", embed = embed)
+    
 @bot.command(pass_context=True)
 async def color(ctx, *, color: discord.Colour):
     file = io.BytesIO()
