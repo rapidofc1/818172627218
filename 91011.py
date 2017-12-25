@@ -564,6 +564,7 @@ async def reverse(ctx,*, text : str):
     await bot.say(f'{reverse}')
 
 @bot.command(pass_context=True)
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def slots(ctx):
     emojis = "🍎🍊🍐🍋🍉🍇🍓🍒"
     a = random.choice(emojis)
@@ -578,11 +579,11 @@ async def slots(ctx):
         message = f':flag_white: | You lost {ctx.message.author.name}.'
 
     embed = await bot.say(embed=discord.Embed(color=0xffffff, description=f'**:slot_machine: | {ctx.message.author.name} rolled the slots...**'))
-    await asyncio.sleep(2.0)
+    await asyncio.sleep(1.0)
     await bot.edit_message(embed, embed=discord.Embed(color=0xffffff, description=f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...**'))
-    await asyncio.sleep(2.0)
+    await asyncio.sleep(1.0)
     await bot.edit_message(embed, embed=discord.Embed(color=0xffffff, description=f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...\n------{ctx.message.author.name}------**'))
-    await asyncio.sleep(2.0)
+    await asyncio.sleep(1.0)
     await bot.edit_message(embed, embed=discord.Embed(color=0xffffff, description=f'**:slot_machine: | {ctx.message.author.name} rolled the slots...\nSpinning...\n------{ctx.message.author.name}------\n`{a} | {b} | {c}`\n{message}**'))
 
 @bot.command()
@@ -729,7 +730,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **83**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **84**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1280,7 +1281,7 @@ async def advert(ctx):
     await bot.send_message(bot.get_channel("393669769649192960"), embed = embed)
     await bot.send_message(ctx.message.author, "Thanks for your advertisement! If you'd like to check it out you can join Cosmos's Hub at https://discord.gg/pDvJZEN")
     
-cmds = "82"
+cmds = "84"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1289,7 +1290,7 @@ async def help(ctx):
    embed.set_author(name = '{} total commands'.format(cmds), icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.add_field(name = ":star2: LIMITED :star2:", value = "`christmas`")
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters`")
-   embed.add_field(name = "Utility Commands", value = "`suggestion` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `say` | `embedsay` | `urband` | `advert`")
+   embed.add_field(name = "Utility Commands", value = "`suggestion` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `say` | `embedsay` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `rapidify` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
    embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `mute` | `warn` | `gbans`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `add` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
@@ -1327,6 +1328,13 @@ async def help_slots():
     h = discord.Embed(title = "Slots Command", color = 0x6691D9, description = "Spins the slot machine")
     h.add_field(name = "Usage", value = "`?slots`")
     h.add_field(name = "Note", value = "Don't overuse this")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_timer():
+    h = discord.Embed(title = "Timer Command", color = 0x6691D9, description = "Sets a timer for you")
+    h.add_field(name = "Usage", value = "`?timer <seconds>`")
+    h.add_field(name = "Note", value = "This command has a cooldown of a minute to prevent spam")
     await bot.say(embed = h)
     
 @bot.command()
@@ -1496,24 +1504,34 @@ async def gbans(ctx):
     await bot.say(embed = embed)
 
 @bot.command(pass_context=True)
+@commands.cooldown(1, 60, commands.BucketType.user)
+async def timer(ctx, seconds : int):
+    e = discord.Embed(title = "Set a timer", color = 0x8f07ff, description = ":timer: | {}, I'll remind you in {} seconds.".for$
+    e.set_thumbnail(url = ctx.message.author.avatar_url)
+    await bot.say(embed = e)
+    await asyncio.sleep(seconds)
+    await bot.say("**:timer: | {} seconds have passed, {}.**".format(seconds, ctx.message.author.mention))
+    
+@bot.command(pass_context=True)
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def war(ctx):
     cards = {2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10', 11: 'Jack', 12: 'Queen', 13: 'King', 14: 'Ace'}
     member = ctx.message.author.name
     player = random.randint(2, 14)
     dealer = random.randint(2, 14)
     embed = await bot.say(embed=discord.Embed(color=0x49bcff, description="**:shield: | Shuffling the cards...**"))
-    await asyncio.sleep(2.0)
+    await asyncio.sleep(1.0)
     await bot.edit_message(embed, embed=discord.Embed(color=0x49bcff, description="**:shield: | Shuffling the cards...\nDealing...**"))
-    await asyncio.sleep(2.0)
+    await asyncio.sleep(1.0)
     await bot.edit_message(embed, embed=discord.Embed(color=0x49bcff, description=f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**'))
     if int(player) > int(dealer):
-        await asyncio.sleep(2.0)
+        await asyncio.sleep(1.0)
         await bot.edit_message(embed, embed=discord.Embed(color=0x84ba74, description=f'**:shield: | Shuffling the cards...\nDealing...\n------{member}-----**\n`Player: ' + cards[player] + '`\n`Dealer: ' + cards[dealer] + '`\n**:tada: | You won {}!**'.format(ctx.message.author.name)))
     elif int(player) < int(dealer):
-        await asyncio.sleep(2.0)
+        await asyncio.sleep(1.0)
         await bot.edit_message(embed, embed=discord.Embed(color=0xde0036, description=f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' +cards[player] + '`\n`Dealer: ' + cards[dealer] + '`\n**:skull_crossbones: | You lost {}.**'.format(ctx.message.author.name)))
     else:
-        await asyncio.sleep(2.0)
+        await asyncio.sleep(1.0)
         player2 = random.randint(2, 14)
         player3 = random.randint(2, 14)
         player4 = random.randint(2, 14)
@@ -1521,13 +1539,13 @@ async def war(ctx):
         dealer3 = random.randint(2, 14)
         dealer4 = random.randint(2, 14)
         if int(player4) > int(dealer4):
-            await asyncio.sleep(2.0)
+            await asyncio.sleep(1.0)
             await bot.edit_message(embed, embed=discord.Embed(color=0x84ba74, description=f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' + cards[player] + '`, ' + cards[player2] + ', ' + cards[player3] + ', `**Deciding Card: **' + cards[player4] + '`\nDealer: ' + cards[dealer] + '`, ' + cards[dealer2] + ', ' + cards[dealer3] + ', `**Deciding Card: **' + cards[dealer4] + '`\n**:tada: | You won {}!**'.format(ctx.message.author.name)))
         elif int(player4) < int(dealer4):
-            await asyncio.sleep(2.0)
+            await asyncio.sleep(1.0)
             await bot.edit_message(embed, embed=discord.Embed(color=0xde0036, description=f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' +cards[player] + '`, ' + cards[player2] + ', ' + cards[player3] + ', `**Deciding Card: **' + cards[player4] + '`\nDealer: ' +cards[dealer] + '`, ' + cards[dealer2] + ', ' + cards[dealer3] + ', `**Deciding Card: **' + cards[dealer4] + '`\n**:skull_crossbones: | You lost {}.**'.format(ctx.message.author.name)))
         else:
-            await asyncio.sleep(2.0)
+            await asyncio.sleep(1.0)
             await bot.edit_message(embed, embed=discord.Embed(color=0xffc627, description=f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' +cards[player] + '`, ' + cards[player2] + ', ' + cards[player3] + ', `**Deciding Card: **' + cards[player4] + '`\nDealer: ' +cards[dealer] + '`, ' + cards[dealer2] + ', ' + cards[dealer3] + ', `**Deciding Card: **' + cards[dealer4] + '`\n**:crossed_swords: | {}, it is a tie!**'.format(ctx.message.author.name)))
 
 bot.loop.create_task(my_background_task())
