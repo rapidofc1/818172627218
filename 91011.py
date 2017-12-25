@@ -290,6 +290,12 @@ async def on_message(message):
         f.write(afk)
     await bot.process_commands(message)
         
+@bot.command(aliases=["ig", "invg"], pass_context=True)
+async def invitegenerator(ctx, text : str):
+    l=discord.Embed(color=ctx.message.author.color, title="Invite link generator", description="Make sure your message is your bots **Client ID**, eg. `385622427977121813`.")
+    l.add_field(name="Here is your link!", value="[Click Me]({})".format("https://discordapp.com/oauth2/authorize?client_id={}&scope=bot&permissions=8".format(text)))
+    await bot.say(embed=l)
+        
 @bot.command(aliases=["s", "st", "star"], pass_context=True)
 async def starboard(ctx,*, message: str):
 #    await bot.delete_message(ctx.message) (This is optional. It'll delete the command message if the hash, aswell as this message is removed.)
@@ -794,7 +800,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **88**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **89**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1385,7 +1391,7 @@ async def advert(ctx):
     await bot.send_message(bot.get_channel("393669769649192960"), embed = embed)
     await bot.send_message(ctx.message.author, "Thanks for your advertisement! If you'd like to check it out you can join Cosmos's Hub at https://discord.gg/pDvJZEN")
     
-cmds = "88"
+cmds = "89"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1393,7 +1399,7 @@ async def help(ctx):
    embed = discord.Embed(title = "Cosmos Commands", color = 0x6691D9, timestamp = datetime.datetime.utcnow(), description = "Cosmos's prefix is `?` If you need specific help on a command type `?help_<command>`")
    embed.set_author(name = '{} total commands'.format(cmds), icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters`")
-   embed.add_field(name = "Utility Commands", value = "`suggestion` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `urband` | `advert` | `timer`")
+   embed.add_field(name = "Utility Commands", value = "`suggestion` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `rapidify` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
    embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `mute` | `warn` | `gbans`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `add` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
@@ -1426,6 +1432,13 @@ async def help_war():
     h = discord.Embed(title = "War Command", color = 0x6691D9, description = "Begin a simple card game")
     h.add_field(name = "Usage", value = "`?war`")
     h.add_field(name = "Note", value = "Don't overuse this")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_invitegenerator():
+    h = discord.Embed(title = "Invite Generator Command", color = 0x6691D9, description = "Create an instant bot authorization link")
+    h.add_field(name = "Usage", value = "`?invitegenerator <client id>`")
+    h.add_field(name = "Note", value = "Avoid this command if the server doesn't allow advertisements/links/invites")
     await bot.say(embed = h)
     
 @bot.command()
