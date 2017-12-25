@@ -382,7 +382,7 @@ async def valentines(ctx):
     hours, remainder3 = divmod(remainder2, 3600)
     minutes, seconds = divmod(remainder3, 60)
     embed = discord.Embed(color = 0xff0000)
-    embed.add_field(name = "gift_heart: Time left until Valentines Day :ribbon:", value = f"{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.")
+    embed.add_field(name = ":gift_heart: Time left until Valentines Day :ribbon:", value = f"{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.")
     embed.set_author(name = "Valentines Day Countdown!", icon_url = ctx.message.author.avatar_url)
     await bot.say(content = "Requested by **" + ctx.message.author.name + "**", embed = embed)
     
