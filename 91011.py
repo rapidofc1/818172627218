@@ -1581,6 +1581,12 @@ async def war(ctx):
             await asyncio.sleep(1.0)
             await bot.edit_message(embed, embed=discord.Embed(color=0xffc627, description=f'**:shield: | Shuffling the cards...\nDealing...\n------{member}------**\n`Player: ' +cards[player] + '`, ' + cards[player2] + ', ' + cards[player3] + ', `**Deciding Card: **' + cards[player4] + '`\nDealer: ' +cards[dealer] + '`, ' + cards[dealer2] + ', ' + cards[dealer3] + ', `**Deciding Card: **' + cards[dealer4] + '`\n**:crossed_swords: | {}, it is a tie!**'.format(ctx.message.author.name)))
 
+@bot.command()
+async def randomcommand():
+    rc=discord.Embed(color=0x8f07ff, title="Random Command", description="**?{}**".format(random.choice(tuple(set(command.name for command in bot.commands.values())))))
+    rc.add_field(name="About", value="Commands you see here, and not in the **help** command, are for testing.")
+    await bot.say(embed=rc)
+            
 bot.loop.create_task(my_background_task())
 if not os.environ.get('TOKEN'):
     print("no token found!")
