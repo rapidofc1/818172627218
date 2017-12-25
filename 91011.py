@@ -1237,6 +1237,38 @@ async def config_starboardid(ctx):
     await bot.send_message(bot.get_channel("379454585808617472"), content = "**Channel ID: " + ctx.message.channel.id + "**", embed = embed)
     await bot.say("**:white_check_mark: | Starboard request sent, now make sure no one can actually type in this channel.\nREMINDER:  I will only accept this request if the channel name is 'starboard'**")
 
+@bot.command(pass_context=True)
+async def widentext(ctx,*, text : str):
+    output = ""
+    for character in text:
+            if '!' <= character <= '~':
+                    output += chr(ord(character) + 65248)
+            else:
+                    output += character
+    wt=discord.Embed(color=0xff00aa, description=output)
+    await bot.say(embed=wt)
+
+@bot.command(pass_context=True)
+async def fingers(ctx,*, text : str):
+    fr=discord.Embed(color=0xff00aa, description=":point_right::skin-tone-2: {} :point_left::skin-tone-2:".format(text))
+    await bot.say(embed=fr)
+
+@bot.command(pass_context=True)
+async def emojify(ctx,*, text : str):
+    output = ""
+    for character in text:
+            if 'a' <= character.lower() <= 'z':
+                    output += ":regional_indicator_{}:".format(character.lower())
+            elif '0' <= character <= '9':
+                    output += ":{}:".format(clients.inflect_engine.number_to_words(int(character)))
+            else:
+                    output += character
+    try:
+            emjfy=discord.Embed(color=0xff00aa, description=output)
+            await bot.say(embed=emjfy)
+    except discord.errors.HTTPException:
+            pass
+    
 @bot.command(pass_context=True, aliases=["feedback", "messsgedev", "fb"])
 @commands.cooldown(1, 120, commands.BucketType.user)
 async def msgdev(ctx, *, pmessage : str = None):
