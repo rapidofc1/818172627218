@@ -1536,9 +1536,9 @@ async def gbans(ctx):
     if x == None:
       embed = discord.Embed(title = "Banned Members for {}".format(ctx.message.server.name), description = "No bans, squeeky clean! ;)", color = 0x596ff)
       await bot.say(embed = embed)
-else:
-    embed = discord.Embed(title = "Banned Members for {}".format(ctx.message.server.name), description = x, color = 0x596ff)
-    await bot.say(embed = embed)
+    else:
+        embed = discord.Embed(title = "Banned Members for {}".format(ctx.message.server.name), description = x, color = 0x596ff)
+        await bot.say(embed = embed)
 
 @bot.command(pass_context=True)
 @commands.cooldown(1, 60, commands.BucketType.user)
