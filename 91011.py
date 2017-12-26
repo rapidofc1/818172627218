@@ -1495,7 +1495,7 @@ async def rtfm_rewrite():
 
 @bot.command()
 async def rtfm_async():
-    await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/latest/api.html#discord.Client**")
+    await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/async/**")
     
 cmds = "97"
 @bot.command(pass_context=True)
