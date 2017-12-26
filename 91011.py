@@ -867,7 +867,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **94**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **97**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1483,7 +1483,21 @@ async def advert(ctx):
     await bot.send_message(bot.get_channel("393669769649192960"), embed = embed)
     await bot.send_message(ctx.message.author, "Thanks for your advertisement! If you'd like to check it out you can join Cosmos's Hub at https://discord.gg/pDvJZEN")
     
-cmds = "94"
+@bot.command(pass_context=True)
+async def rtfm(ctx, msg : str):
+    em=discord.Embed(color=0x6691D9, description="[{}]({})".format(msg, "http://discordpy.readthedocs.io/en/latest/api.html#discord.Client.{}".format(msg)))
+    em.set_author(name="Client.{}".format(msg), icon_url=ctx.message.author.avatar_url)
+    await bot.say(embed=em)
+
+@bot.command()
+async def rtfm_rewrite():
+    await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/rewrite/**")
+
+@bot.command()
+async def rtfm_async():
+    await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/latest/api.html#discord.Client**")
+    
+cmds = "97"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1497,6 +1511,7 @@ async def help(ctx):
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Miscellaneous Commands", value ="`embedsay` | `say` | `emojify` | `scramble` | `widentext` | `fingers` | `randomcommand` | `itsrapids` | `is` | `add` | `divide` | `multiply` | `subtract` | `power` |  `christmas` | `halloween` | `easter` | `saintpatrick` | `valentines`")
    embed.add_field(name = "MiniGame Commands", value = "`war` | `slots`")
+   embed.add_field(name = "Read the manual Commands", value = "`rtfm` | `rtfm_async` | `rtfm_rewrite`")
    embed.add_field(name = "Discord.py Async HowTo's", value = "`tutBASICBOT` | `tutPING` | `tutSAY` | `tutCOINFLIP` | `tutONMESSAGE` | `tutONSERVERJOIN` | `tutTYPES` | `tutSERVERS` | `tutMEMBERS` | `tutCHANNELS` | `tutEMOJIS` | `tutERRORHANDLER` | `tutSETGAME` | `tutTERMUX`")
    embed.set_footer(text = "| © Cosmos ", icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.set_thumbnail(url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
@@ -1504,6 +1519,13 @@ async def help(ctx):
 
    await bot.say("**:white_check_mark: | I've sent you all my commands!**")
 
+@bot.command()
+async def help_rtfm():
+    h = discord.Embed(title = "Rtfm Command", color = 0x6691D9, description = "Sends the corrosponding link to your message")
+    h.add_field(name = "Usage", value = "`?rtfm <event_message>`")
+    h.add_field(name = "Note", value = "I don't allow spaces for this because they're not needed, like `rtfm wait_for_message`, pease don't requests fake/dumb links")
+    await bot.say(embed = h)
+    
 @bot.command()
 async def help_virus():
     h = discord.Embed(title = "Virus Command", color = 0x6691D9, description = "Inject a virus into someone")
