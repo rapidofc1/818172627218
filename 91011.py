@@ -372,6 +372,19 @@ async def removerole(ctx, member : discord.Member, *, role_name: discord.Role):
     await bot.remove_roles(member, role_name)
     await bot.say("**:white_check_mark: | Removed the role {} from {}.**".format(role_name, member.name))
     
+@bot.command(pass_context=True)
+async def clear(ctx, number):
+    if not ctx.message.author.server_permissions.manage_messages:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    elif int(number) > 100:
+      return await bot.say("**:x: | Cannot clear more than 100 messages.**")
+    msgs = []
+    number = int(number)
+    async for x in bot.logs_from(ctx.message.channel, limit = number):
+        msgs.append(x)
+    await bot.delete_messages(msgs)
+    await bot.say("**:white_check_mark: | Cleared `{}` messages.**".format(number))
+    
 @bot.command(aliases=["ig", "invg"], pass_context=True)
 async def invitegenerator(ctx, text : str):
     l=discord.Embed(color=ctx.message.author.color, title="Invite link generator", description="Make sure your message is your bots **Client ID**, eg. `385622427977121813`.")
@@ -867,7 +880,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **97**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **98**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1497,7 +1510,7 @@ async def rtfm_rewrite():
 async def rtfm_async():
     await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/async/**")
     
-cmds = "97"
+cmds = "98"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1507,7 +1520,7 @@ async def help(ctx):
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters` | `suggestion`")
    embed.add_field(name = "Utility Commands", value = "`invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `avatar` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
-   embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole`")
+   embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `clear`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Miscellaneous Commands", value ="`embedsay` | `say` | `emojify` | `scramble` | `widentext` | `fingers` | `randomcommand` | `itsrapids` | `is` | `add` | `divide` | `multiply` | `subtract` | `power` |  `christmas` | `halloween` | `easter` | `saintpatrick` | `valentines`")
    embed.add_field(name = "MiniGame Commands", value = "`war` | `slots`")
@@ -1768,6 +1781,14 @@ async def help_removerole():
     h = discord.Embed(title = "Removerole Command", color = 0x6691D9, description = "Removes the given role from a member")
     h.add_field(name = "Usage", value = "`?removerole <@user> or <username> then <@role> or <rolename>`")
     h.add_field(name = "Note", value = "No mentions needed")
+    await bot.say(embed = h)
+    
+
+@bot.command()
+async def help_clear():
+    h = discord.Embed(title = "Clear Command", color = 0x6691D9, description = "Removes messages by the given amount")
+    h.add_field(name = "Usage", value = "`?clear 50`")
+    h.add_field(name = "Note", value = "No more than 100 messages can be cleared in one out going command")
     await bot.say(embed = h)
     
 @bot.command()
