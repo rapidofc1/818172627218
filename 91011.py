@@ -48,19 +48,19 @@ async def on_command_error(error, ctx):
 async def on_message(message):
     if message.author.bot:
         return
-    elif "cosmos" in message.content:
+    elif ctx.message in ["cosmos", "Cosmos", "COSMOS", "CoSmos", cOsMos", "CoSMOS", "cOSmOs"]:
       await bot.send_message(message.channel, (random.choice(["Yes?", "No", "How is that even possible...", "He's an asshole.","\n😎😎😎😎😎😎😎\n👍   I'm so cool!   👍\n💋😏😏😏😏😏💋\n👌🚀🚀🚀🚀🚀👌\n🚗📷📷📷📷📷🚗\n😈😈😈😈😈😈😈", "Sure, ig", "╮(╯▽╰)╭","IMPOSSIBRUUUUU", "( ˘ ³˘)❤", "(づ￣ ³￣)づ", "(っ˘̩╭╮˘̩)っ", "<(⇀‸↼‶)>", "(〜￣△￣)〜", "Take your question, and shove it up the bumof the guy below. 🔽", "Talk to the hand  ✋", "Last night I held a lovely hand,\nIt was so small and neat,\nI thought my heart withjoy would burst\nSo wild was every beat.\n\nNo other hand unto my heart\nCould greater pleasure bring \nThan the one so dear I heldlast night.\nFour Aces and a King"])))
-    elif "Cosmos" in message.content:
-      await bot.send_message(message.channel, (random.choice(["Yes?", "No", "How is that even possible...", "He's an asshole.","\n😎😎😎😎😎😎😎\n👍I'm so cool!👍\n💋😏😏😏😏😏💋\n👌🚀🚀🚀🚀🚀👌\n🚗📷📷📷📷📷🚗\n😈😈😈😈😈😈😈", "Sure, ig", "╮(╯▽╰)╭","IMPOSSIBRUUUUU", "( ˘ ³˘)❤", "(づ￣ ³￣)づ","(っ˘̩╭╮˘̩)っ", "<(⇀‸↼‶)>", "(〜￣△￣)〜", "Take your question, and shove it up the bumof the guy below. 🔽", "Talk to the hand  ✋", "Last night I helda lovely hand,\nIt was so small and neat,\nI thought my heart withjoy would burst\nSo wild was every beat.\n\nNo other hand unto my heart\nCouldgreater pleasure bring \nThan the one so dear I heldlast night.\nFour Aces and a King"])))
-    elif "COSMOS" in message.content:
-      await bot.send_message(message.channel, (random.choice(["Yes?", "No", "How is that even possible...", "He's an asshole.","\n😎😎😎😎😎😎😎\n👍I'm so cool!👍\n💋😏😏😏😏😏💋\n👌🚀🚀🚀🚀🚀👌\n🚗📷📷📷📷📷🚗\n😈😈😈😈😈😈😈", "Sure, ig", "╮(╯▽╰)╭","IMPOSSIBRUUUUU", "( ˘ ³˘)❤", "(づ￣ ³￣)づ","(っ˘̩╭╮˘̩)っ", "<(⇀‸↼‶)>", "(〜￣△￣)〜", "Take your question, and shove it up the bumof the guy below. 🔽", "Talk to the hand  ✋", "Last night I helda lovely hand,\nIt was so small and neat,\nI thought my heart withjoy would burst\nSo wild was every beat.\n\nNo other hand unto my heart\nCouldgreater pleasure bring \nThan the one so dear I heldlast night.\nFour Aces and a King"])))
-    elif "Rapid" in message.content:
-      msg=await bot.send_message(message.channel, "IS GAY")
-      await bot.add_reaction(message, "🙇")
-      await asyncio.sleep(0.5)
-      await bot.edit_message(msg, "**Wait nvm YOU ARE ƪ(˘ᴗ˘)┐**")
-      await bot.add_reaction(msg, "✋🏻")
-      await bot.add_reaction(msg,"☝️🏻")
+#    elif "Cosmos" in message.content:
+#      await bot.send_message(message.channel, (random.choice(["Yes?", "No", "How is that even possible...", "He's an asshole.","\n😎😎😎😎😎😎😎\n👍I'm so cool!👍\n💋😏😏😏😏😏💋\n👌🚀🚀🚀🚀🚀👌\n🚗📷📷📷📷📷🚗\n😈😈😈😈😈😈😈", "Sure, ig", "╮(╯▽╰)╭","IMPOSSIBRUUUUU", "( ˘ ³˘)❤", "(づ￣ ³￣)づ","(っ˘̩╭╮˘̩)っ", "<(⇀‸↼‶)>", "(〜￣△￣)〜", "Take your question, and shove it up the bumof the guy below. 🔽", "Talk to the hand  ✋", "Last night I helda lovely hand,\nIt was so small and neat,\nI thought my heart withjoy would burst\nSo wild was every beat.\n\nNo other hand unto my heart\nCouldgreater pleasure bring \nThan the one so dear I heldlast night.\nFour Aces and a King"])))
+#    elif "COSMOS" in message.content:
+#      await bot.send_message(message.channel, (random.choice(["Yes?", "No", "How is that even possible...", "He's an asshole.","\n😎😎😎😎😎😎😎\n👍I'm so cool!👍\n💋😏😏😏😏😏💋\n👌🚀🚀🚀🚀🚀👌\n🚗📷📷📷📷📷🚗\n😈😈😈😈😈😈😈", "Sure, ig", "╮(╯▽╰)╭","IMPOSSIBRUUUUU", "( ˘ ³˘)❤", "(づ￣ ³￣)づ","(っ˘̩╭╮˘̩)っ", "<(⇀‸↼‶)>", "(〜￣△￣)〜", "Take your question, and shove it up the bumof the guy below. 🔽", "Talk to the hand  ✋", "Last night I helda lovely hand,\nIt was so small and neat,\nI thought my heart withjoy would burst\nSo wild was every beat.\n\nNo other hand unto my heart\nCouldgreater pleasure bring \nThan the one so dear I heldlast night.\nFour Aces and a King"])))
+#    elif "Rapid" in message.content:
+#      msg=await bot.send_message(message.channel, "IS GAY")
+#      await bot.add_reaction(message, "🙇")
+#      await asyncio.sleep(0.5)
+#      await bot.edit_message(msg, "**Wait nvm YOU ARE ƪ(˘ᴗ˘)┐**")
+#      await bot.add_reaction(msg, "✋🏻")
+#      await bot.add_reaction(msg,"☝️🏻")
     else:
         await bot.process_commands(message)
     
