@@ -45,7 +45,7 @@ async def on_command_error(error, ctx):
     traceback.print_exception(type(error), error, error.__traceback__, file = sys.stderr)
 
 @bot.event
-async def on_message(message):
+async def on_message(ctx, message):
     if message.author.bot:
         return
     elif ctx.message in ["cosmos", "Cosmos", "COSMOS", "CoSmos", cOsMos", "CoSMOS", "cOSmOs"]:
