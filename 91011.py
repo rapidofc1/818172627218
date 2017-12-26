@@ -826,7 +826,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **94**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **90**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1435,7 +1435,7 @@ async def advert(ctx):
     await bot.send_message(bot.get_channel("393669769649192960"), embed = embed)
     await bot.send_message(ctx.message.author, "Thanks for your advertisement! If you'd like to check it out you can join Cosmos's Hub at https://discord.gg/pDvJZEN")
     
-cmds = "94"
+cmds = "90"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1445,7 +1445,7 @@ async def help(ctx):
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters`")
    embed.add_field(name = "Utility Commands", value = "`suggestion` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
-   embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `mute` | `warn` | `gbans`")
+   embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `softban` | `mute` | `warn` | `gbans`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Miscellaneous Commands", value ="`embedsay` | `say` | `emojify` | `scramble` | `widentext` | `fingers` | `randomcommand` | `is` | `add` | `divide` | `multiply` | `subtract` | `power`")
    embed.add_field(name = "Countdown Commands", value = "`christmas` | `halloween` | `easter` | `saintpatrick` | `valentines`")
@@ -1649,14 +1649,14 @@ async def help_urband():
 async def help_kick():
     h = discord.Embed(title = "Kick Command", color = 0x6691D9, description = "Kicks the given user")
     h.add_field(name = "Usage", value = "`?kick <@user> or <username>`")
-    h.add_field(name = "Note", value = "Disabled (WIP)")
+    h.add_field(name = "Note", value = "Empty...")
     await bot.say(embed = h)
 
 @bot.command()
 async def help_ban():
     h = discord.Embed(title = "Ban Command", color = 0x6691D9, description = "Bans the given user")
     h.add_field(name = "Usage", value = "`?ban <@user> or <username>`")
-    h.add_field(name = "Note", value = "Disabled (WIP)")
+    h.add_field(name = "Note", value = "Empty...")
     await bot.say(embed = h)
 
 @bot.command()
@@ -1681,6 +1681,13 @@ async def help_mute():
     await bot.say(embed = h)
 
 @bot.command()
+async def help_softban():
+    h = discord.Embed(title = "Mute Command", color = 0x6691D9, description = "Bans, then unbans the member")
+    h.add_field(name = "Usage", value = "`?softban <@user> or <username>`")
+    h.add_field(name = "Note", value = "Empty...")
+    await bot.say(embed = h)
+    
+@bot.command()
 async def help_choose():
     h = discord.Embed(title = "Choose Command", color = 0x6691D9, description = "Makes the bot choose between any options")
     h.add_field(name = "Usage", value = "`?choose <option1> | <option2> | <option3>`")
@@ -1701,6 +1708,8 @@ async def betatesters():
     
 @bot.command(aliases=["getbans", "bans"], pass_context=True)
 async def gbans(ctx):
+    if not ctx.message.author.server_permissions.administrator:
+      return await bot.say("**:x: | Insufficient permissions.**")
     x = await bot.get_bans(ctx.message.server)
     x = '\n'.join([y.name for y in x])
     if x == None:
