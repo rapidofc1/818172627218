@@ -35,8 +35,8 @@ async def on_command_error(error, ctx):
     if isinstance(error, commands.CommandOnCooldown):
       await bot.send_message(ctx.message.channel, "**:x: | This command is on cooldown, try again later. (╯°□°）╯︵ ┻━┻**")
 
-    elif isinstance(error, commands.CommandNotFound):
-      await bot.send_message(ctx.message.channel, "**:x: | That command was not found! Type ?help for a list of commands.（￣～￣;）**")
+#    elif isinstance(error, commands.CommandNotFound):
+#      await bot.send_message(ctx.message.channel, "**:x: | That command was not found! Type ?help for a list of commands.（￣～￣;）**")
 
    # elif isinstance(error, commands.InvalidArgument):
       #await bot.send_message(ctx.message.channel, f'**:x: | Invalid argument in command {ctx.command}. (」ﾟﾛﾟ)｣**')
@@ -44,6 +44,24 @@ async def on_command_error(error, ctx):
     print('Ignoring exception in command {}:'.format(ctx.command), file = sys.stderr)
     traceback.print_exception(type(error), error, error.__traceback__, file = sys.stderr)
 
+@bot.event
+async def on_message(message):
+    if message.author.bot:
+        return
+    elif "cosmos" in message.content:
+      await bot.send_message(message.channel, (random.choice(["Yes?", "No", "How is that even possible...", "He's an asshole.","\n😎😎😎😎😎😎😎\n👍   I'm so cool!   👍\n💋😏😏😏😏😏💋\n👌🚀🚀🚀🚀🚀👌\n🚗📷📷📷📷📷🚗\n😈😈😈😈😈😈😈", "Sure, ig", "╮(╯▽╰)╭","IMPOSSIBRUUUUU", "( ˘ ³˘)❤", "(づ￣ ³￣)づ", "(っ˘̩╭╮˘̩)っ", "<(⇀‸↼‶)>", "(〜￣△￣)〜", "Take your question, and shove it up the bumof the guy below. 🔽", "Talk to the hand  ✋", "Last night I held a lovely hand,\nIt was so small and neat,\nI thought my heart withjoy would burst\nSo wild was every beat.\n\nNo other hand unto my heart\nCould greater pleasure bring \nThan the one so dear I heldlast night.\nFour Aces and a King"])))
+    elif "Cosmos" in message.content:
+      await bot.send_message(message.channel, (random.choice(["Yes?", "No", "How is that even possible...", "He's an asshole.","\n😎😎😎😎😎😎😎\n👍I'm so cool!👍\n💋😏😏😏😏😏💋\n👌🚀🚀🚀🚀🚀👌\n🚗📷📷📷📷📷🚗\n😈😈😈😈😈😈😈", "Sure, ig", "╮(╯▽╰)╭","IMPOSSIBRUUUUU", "( ˘ ³˘)❤", "(づ￣ ³￣)づ","(っ˘̩╭╮˘̩)っ", "<(⇀‸↼‶)>", "(〜￣△￣)〜", "Take your question, and shove it up the bumof the guy below. 🔽", "Talk to the hand  ✋", "Last night I helda lovely hand,\nIt was so small and neat,\nI thought my heart withjoy would burst\nSo wild was every beat.\n\nNo other hand unto my heart\nCouldgreater pleasure bring \nThan the one so dear I heldlast night.\nFour Aces and a King"])))
+    elif "Rapid" in message.content:
+      msg=await bot.send_message(message.channel, "IS GAY")
+      await bot.add_reaction(message, "🙇")
+      await asyncio.sleep(0.5)
+      await bot.edit_message(msg, "**Wait nvm YOU ARE ƪ(˘ᴗ˘)┐**")
+      await bot.add_reaction(msg, "✋🏻")
+      await bot.add_reaction(msg,"☝️🏻")
+    else:
+        await bot.process_commands(message)
+    
 async def my_background_task():
     await bot.wait_until_ready()
     servs = (len(bot.servers))
@@ -330,6 +348,20 @@ async def warn(ctx, member : discord.Member, *, reason: str):
 #        return await bot.say(ctx.message.author.mention + " Specify a user to warn!")
     await bot.send_message(member, "**You have been warned in {}!\nReason: {}**".format(ctx.message.server.name, reason))
     await bot.say("**:white_check_mark: | Warned {}.**".format(member.name))
+    
+@bot.command(pass_context=True)
+async def addrole(ctx, member : discord.Member, *, role_name: discord.Role):
+    if not ctx.message.author.server_permissions.manage_roles:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    await bot.add_roles(member, role_name)
+    await bot.say("**:white_check_mark: | Added the role {} to {}.**".format(role_name, member.name))
+
+@bot.command(pass_context=True)
+async def removerole(ctx, member : discord.Member, *, role_name: discord.Role):
+    if not ctx.message.author.server_permissions.manage_roles:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    await bot.remove_roles(member, role_name)
+    await bot.say("**:white_check_mark: | Removed the role {} from {}.**".format(role_name, member.name))
     
 @bot.command(aliases=["ig", "invg"], pass_context=True)
 async def invitegenerator(ctx, text : str):
