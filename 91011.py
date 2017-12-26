@@ -269,27 +269,68 @@ async def afk(ctx,*,reason : str):
     with open('afk.json', 'w') as f:
         f.write(afk)
 
-async def on_message(message):
-    user = ctx.message.author
-    channel = ctx.message.channel
-    afk = open('afk.json').read()
-    afk = json.loads(afk)
-    if user.id in afk:
-        del afk[user.id]
-        await bot.send_message(channel, "**You are now back from being AFK.**")
-    else:
-        mentions = message.mentions
-        for member in mentions:
-            if member.id in afk:
-                em = discord.Embed(color = 0x0f6bff, description = "That user is currently AFK!")
-                em.add_field(name = "Reason", value = "{}".format(afk[member.id]))
-                em.set_thumbnail(url = member.avatar_url)
-                await bot.send_message(channel, content = "**:door: | {} is AFK!**".format(member.name), embed = em)
-    afk = json.dumps(afk)
-    with open('afk.json') as f:
-        f.write(afk)
-    await bot.process_commands(message)
-        
+#async def on_message(message):
+#    user = ctx.message.author
+#    channel = ctx.message.channel
+#    afk = open('afk.json').read()
+#    afk = json.loads(afk)
+#    if user.id in afk:
+#        del afk[user.id]
+#        await bot.send_message(channel, "**You are now back from being AFK.**")
+#    else:
+#        mentions = message.mentions
+#        for member in mentions:
+#            if member.id in afk:
+#                em = discord.Embed(color = 0x0f6bff, description = "That user is currently AFK!")
+#                em.add_field(name = "Reason", value = "{}".format(afk[member.id]))
+#                em.set_thumbnail(url = member.avatar_url)
+#                await bot.send_message(channel, content = "**:door: | {} is AFK!**".format(member.name), embed = em)
+#    afk = json.dumps(afk)
+#    with open('afk.json') as f:
+#        f.write(afk)
+#    await bot.process_commands(message)
+ 
+@bot.command(pass_context=True)
+async def nick(ctx, member : discord.Member, *,  name : str):
+    if not ctx.message.author.server_permissions.manage_nicknames:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    await bot.change_nickname(member, name)
+    await bot.say("**:white_check_mark: | Changed {}'s nickname to: `{}`**".format(member.name, name))
+
+@bot.command(pass_context=True)
+async def kick(ctx, member : discord.Member, *,  reason: str = ""):
+    if not ctx.message.author.server_permissions.kick_members:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    await bot.kick(member)
+    await bot.send_message(member, "**You were kicked from {}!\nReason: {}\nAction by: {}**".format(ctx.message.server.name, reason, ctx.message.author.name))
+    await bot.say("**:white_check_mark: | Kicked {}, reason: `{}`**".format(member.name, reason))
+
+@bot.command(pass_context=True)
+async def ban(ctx, member : discord.Member, purge: int = 7):
+    if not ctx.message.author.server_permissions.ban_members:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    await bot.ban(member, purge)
+    await bot.send_message(member, "**You were banned from {}!\nAction by: {}**".format(ctx.message.server.name, ctx.message.author.name))
+    await bot.say("**:white_check_mark: | Banned {}.**".format(member.name))
+
+@bot.command(pass_context=True)
+async def softban(ctx, member : discord.Member, purge: int = 1):
+    if not ctx.message.author.server_permissions.ban_members:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    await bot.ban(member, purge)
+    await bot.unban(member.server, member)
+    await bot.send_message(member, "**You were soft-banned from {}!\nAction by: {}**".format(ctx.message.server.name, ctx.message.author.name))
+    await bot.say("**:white_check_mark: | Banned, then un-banned {}.**".format(member.name))
+
+@bot.command(pass_context=True)
+async def warn(ctx, member : discord.Member, *, reason: str):
+    if not ctx.message.author.server_permissions.kick_members:
+        return await bot.say("**:x: | You cannot to do that.**\nReason: **Insufficient Permissions(KickMembers)**")
+#    if not user:
+#        return await bot.say(ctx.message.author.mention + " Specify a user to warn!")
+    await bot.send_message(member, "**You have been warned in {}!\nReason: {}**".format(ctx.message.server.name, reason))
+    await bot.say("**:white_check_mark: | Warned {}.**".format(member.name))
+    
 @bot.command(aliases=["ig", "invg"], pass_context=True)
 async def invitegenerator(ctx, text : str):
     l=discord.Embed(color=ctx.message.author.color, title="Invite link generator", description="Make sure your message is your bots **Client ID**, eg. `385622427977121813`.")
@@ -424,11 +465,6 @@ async def on_server_join(server, ctx):
     embed = discord.Embed(color = 0xfffa02)
     embed.add_field(name = "Owner", value = ctx.server.owner)
     await bot.send_message(bot.get_channel("379454585808617472"), content = "**:sparkles: " + ctx.server.name + " ID: " + ctx.server.id + "**", embed = embed)
-
-@bot.command()
-async def rip(ctx, user: discord.Member):
-    user = user.name
-    await bot.say("<http://ripme.xyz/{}>".format(user.replace(" ", "%20")))
 
 @bot.command()
 async def faq():
@@ -731,16 +767,6 @@ async def emojis(ctx):
     result = "All of the servers emojis are "
     for emoji in emojis:
         result += "```" + emoji.name + "```"
-
-@bot.command(pass_context=True)
-async def warn(ctx, user: discord.Member, *, reason: str):
-    if not ctx.message.author.server_permissions.kick_members:
-        return await bot.say("**:x: | You cannot to do that.**\nReason: **Insufficient Permissions(KickMembers)**")
-    if not user:
-        return await bot.say(ctx.message.author.mention + " Specify a user to warn!")
-    embed = discord.Embed(color = 0xffffff, title = "You've been warned!", description = "Reason: {}".format(reason))
-    await bot.send_message(destination = user, embed = embed)
-    await bot.say("**:white_check_mark: | Warned {}**".format(user.name))
 
 #DEVELOPER COMMAND
 @bot.command(pass_context=True, aliases=["setl", "sl"])
@@ -1148,18 +1174,6 @@ async def emojiinfo(ctx, *,emoji: discord.Emoji):
     await bot.say(embed = embed)
 
 @bot.command()
-async def kick():
-    await bot.say("**:x: | That command is disabled for now.**")
-
-@bot.command()
-async def ban():
-    await bot.say("**:x: | That command is disabled for now.**")
-
-@bot.command()
-async def mute():
-    await bot.say("**:x: | That command is disabled for now.**")
-    
-@bot.command()
 async def urband(*msg):
 
     word = ' '.join(msg)
@@ -1430,7 +1444,7 @@ async def help(ctx):
    embed.set_author(name = '{} total commands'.format(cmds), icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters`")
    embed.add_field(name = "Utility Commands", value = "`suggestion` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `urband` | `advert` | `timer`")
-   embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `rapidify` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
+   embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
    embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `mute` | `warn` | `gbans`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Miscellaneous Commands", value ="`embedsay` | `say` | `emojify` | `scramble` | `widentext` | `fingers` | `randomcommand` | `is` | `add` | `divide` | `multiply` | `subtract` | `power`")
