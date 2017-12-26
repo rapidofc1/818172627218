@@ -387,6 +387,38 @@ async def clear(ctx, number):
     await bot.delete_messages(msgs)
     await bot.say("**:white_check_mark: | Cleared `{}` messages.**".format(number))
     
+@bot.command(pass_context=True)
+@commands.cooldown(1, 60, commands.BucketType.user)
+async def massnick(ctx,*, message : str):
+    if not ctx.message.author.server_permissions.administrator:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    try:
+        for member in ctx.message.server.members:
+           if member is not ctx.message.server.owner:
+               if member.nick is not None:
+                   await bot.change_nickname(member, "{}".format(message))
+               else:
+                   name = member.name
+                   await bot.change_nickname(member, "{}".format(message))
+        await bot.say("**:white_check_mark: | Mass nicked everyone to `{}`.**".format(message))
+    except Exception as e:
+        if 'Privellage is too low' in str(e):
+            pass
+
+@bot.command(pass_context=True)
+async def clearnicks(ctx):
+    if not ctx.message.author.server_permissions.administrator:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    try:
+        for member in ctx.message.server.members:
+            if member is not ctx.message.server.owner:
+                name = member.name
+                await bot.change_nickname(member, name)
+        await bot.say("**:white_check_mark: | Cleared all nicknames.**")
+    except Exception as e:
+        if 'Privellage is too low' in str(e)
+            pass
+    
 @bot.command(aliases=["ig", "invg"], pass_context=True)
 async def invitegenerator(ctx, text : str):
     l=discord.Embed(color=ctx.message.author.color, title="Invite link generator", description="Make sure your message is your bots **Client ID**, eg. `385622427977121813`.")
@@ -882,7 +914,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **98**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **100**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1512,7 +1544,7 @@ async def rtfm_rewrite():
 async def rtfm_async():
     await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/async/**")
     
-cmds = "98"
+cmds = "100"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1522,7 +1554,7 @@ async def help(ctx):
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters` | `suggestion`")
    embed.add_field(name = "Utility Commands", value = "`invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `avatar` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
-   embed.add_field(name = "Administrative Commands", value = "`kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `clear`")
+   embed.add_field(name = "Administrative Commands", value = "`nick` | `massnick` | `clearnicks` | `kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `clear`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Miscellaneous Commands", value ="`embedsay` | `say` | `emojify` | `scramble` | `widentext` | `fingers` | `randomcommand` | `itsrapids` | `is` | `add` | `divide` | `multiply` | `subtract` | `power` |  `christmas` | `halloween` | `easter` | `saintpatrick` | `valentines`")
    embed.add_field(name = "MiniGame Commands", value = "`war` | `slots`")
@@ -1785,7 +1817,27 @@ async def help_removerole():
     h.add_field(name = "Note", value = "No mentions needed")
     await bot.say(embed = h)
     
-
+@bot.command()
+async def help_clearnicks():
+    h = discord.Embed(title = "Clearnicks Command", color = 0x6691D9, description = "Clears every nickname in the server")
+    h.add_field(name = "Usage", value = "`?clearnicks`")
+    h.add_field(name = "Note", value = "Empty...")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_massnick():
+    h = discord.Embed(title = "Massnick Command", color = 0x6691D9, description = "Nicknames everyone in the server on command")
+    h.add_field(name = "Usage", value = "`?massnick <nickname>`")
+    h.add_field(name = "Note", value = "Does not always work, and don't overuse")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_nick():
+    h = discord.Embed(title = "Nick Command", color = 0x6691D9, description = "Nicknames given user on command")
+    h.add_field(name = "Usage", value = "`?nick <@user> or <username> then <nickname>`")
+    h.add_field(name = "Note", value = "No mentions needed")
+    await bot.say(embed = h)
+    
 @bot.command()
 async def help_clear():
     h = discord.Embed(title = "Clear Command", color = 0x6691D9, description = "Removes messages by the given amount")
