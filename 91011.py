@@ -416,7 +416,7 @@ async def clearnicks(ctx):
                 await bot.change_nickname(member, name)
         await bot.say("**:white_check_mark: | Cleared all nicknames.**")
     except Exception as e:
-        if 'Privellage is too low' in str(e)
+        if 'Privellage is too low' in str(e):
             pass
     
 @bot.command(aliases=["ig", "invg"], pass_context=True)
