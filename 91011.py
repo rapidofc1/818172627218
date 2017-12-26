@@ -313,6 +313,7 @@ async def itsrapids():
     rp=discord.Embed(color=0x42b9f4,description="Rapid's sexy color changing color, speaker/clock")
     rp.set_author(name="Rapid's Sexy Speaker/Clock", icon_url="https://cdn.discordapp.com/attachments/385625038444822539/395092752297099264/20171225_225413.jpg")
     rp.set_thumbnail(url="https://cdn.discordapp.com/attachments/385625038444822539/395092752297099264/20171225_225413.jpg")
+    rp.set_image(url="https://cdn.discordapp.com/attachments/385625038444822539/395092752297099264/20171225_225413.jpg")
     rp.set_footer(text="Sexy Speaker/Clock", icon_url="https://cdn.discordapp.com/attachments/385625038444822539/395092752297099264/20171225_225413.jpg")
     await bot.say(embed=rp)
     
