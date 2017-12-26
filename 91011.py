@@ -394,12 +394,12 @@ async def massnick(ctx,*, message : str):
       return await bot.say("**:x: | Insufficient permissions.**")
     try:
         for member in ctx.message.server.members:
-           if member is not ctx.message.server.owner:
-               if member.nick is not None:
-                   await bot.change_nickname(member, "{}".format(message))
-               else:
-                   name = member.name
-                   await bot.change_nickname(member, "{}".format(message))
+            if member is not ctx.message.server.owner:
+                if member.nick is not None:
+                    await bot.change_nickname(member, "{}".format(message))
+                else:
+                    name = member.name
+                    await bot.change_nickname(member, "{}".format(message))
         await bot.say("**:white_check_mark: | Mass nicked everyone to `{}`.**".format(message))
     except Exception as e:
         if 'Privellage is too low' in str(e):
