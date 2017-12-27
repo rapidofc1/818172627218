@@ -333,7 +333,7 @@ async def gamertag(ctx):
            19: f"⚡uper⚡exy{at}",
            20: f"⛤⛤TheOFC{at}⛤"}
 
-    embed=discord.Embed(color=ctx.message.author.color, title="Super dank gamertag generator", description=":label: | " + mlg[a])
+    embed=discord.Embed(color=0x8f07ff, title="Super dank gamertag generator", description=":label: | " + mlg[a])
     await bot.say(embed=embed)
 
 @bot.command(pass_context=True, aliases=["ms", "messages"])
