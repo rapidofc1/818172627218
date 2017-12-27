@@ -53,7 +53,7 @@ async def on_member_join(member: discord.Member):
       embed.set_author(icon_url=member.avatar_url, name="{}#{} Welcome to the server!".format(member.name, member.discriminator))
       embed.set_thumbnail(url=member.avatar_url)
       embed.set_footer(text="User#{}".format(member.discriminator))
-      await bot.send_message(bot.get_channel("377834443525849088"), content=member.id, embed=embed)
+      #await bot.send_message(bot.get_channel("377834443525849088"), content=member.id, embed=embed)
       await bot.send_message(bot.get_channel("374358230299705348"), content=member.id, embed=embed)
 
 @bot.event
@@ -65,7 +65,7 @@ async def on_member_remove(member: discord.Member):
       embed.set_author(icon_url=member.avatar_url, name="{}#{} Left the server.".format(member.name, member.discriminator))
       embed.set_thumbnail(url=member.avatar_url)
       embed.set_footer(text="User#{}".format(member.discriminator))
-      await bot.send_message(bot.get_channel("377834443525849088"), content=member.id, embed=embed)
+      #await bot.send_message(bot.get_channel("377834443525849088"), content=member.id, embed=embed)
       await bot.send_message(bot.get_channel("374358230299705348"), content=member.id, embed=embed)
     
 @bot.event
