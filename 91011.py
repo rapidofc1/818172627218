@@ -85,6 +85,14 @@ async def on_message(message):
       await bot.edit_message(msg, "**Wait nvm YOU ARE ƪ(˘ᴗ˘)┐**")
       await bot.add_reaction(msg, "✋🏻")
       await bot.add_reaction(msg,"☝️🏻")
+    elif "Poll:" in message.content:
+      await bot.add_reaction(message, "👍")
+      await bot.add_reaction(message, "🤷")
+      await bot.add_reaction(message, "👎")
+    elif "poll:" in message.content:
+      await bot.add_reaction(message, "👍")
+      await bot.add_reaction(message, "🤷")
+      await bot.add_reaction(message, "👎")
     else:
         await bot.process_commands(message)
     
