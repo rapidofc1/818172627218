@@ -308,7 +308,25 @@ async def my_background_task():
 #        return cmd
 #
 #
-#
+
+@bot.command(pass_context=True)
+@commands.cooldown(1, 60, commands.BucketType.user)
+async def mail(ctx, member : discord.Member, *, message : str):
+    sender=ctx.message.author.name
+    await bot.say("Provide a title. (NA if none)`30s`")
+    title = await bot.wait_for_message(timeout = 30.0, author = ctx.message.author)
+    await bot.say("Would you like to attach a thumbnail? If so send a link. (NA if none)`30s`")
+    image = await bot.wait_for_message(timeout = 30.0, author = ctx.message.author)
+#    await bot.say("Please provide a subject. (NA if none)`30s`")
+#    subject = await bot.wait_for_message(timeout = 30.0, author = ctx.message.author)
+    m=discord.Embed(color=0x42b6f4, title="{}".format(title.content), description="{}".format(message), timestamp=datetime.datetime.utcnow())
+    m.set_author(name="New mail from {}!".format(sender))
+#    m.add_field(name=":envelope_with_arrow: | Mail recieved.", value="{}".format(subject.content))
+    m.set_thumbnail(url="{}".format(image.content))
+    m.set_footer(text="{}#{} ".format(sender, ctx.message.author.discriminator), icon_url=ctx.message.author.avatar_url)
+    await bot.send_message(member, embed=m)
+    await bot.say("**:white_check_mark: | Message sent to {}#{}.**".format(member.name, member.discriminator))
+
 @bot.command(pass_context=True)
 async def afk(ctx,*,reason : str):
     user = ctx.message.author
@@ -946,7 +964,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **100**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **101**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1576,7 +1594,7 @@ async def rtfm_rewrite():
 async def rtfm_async():
     await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/async/**")
     
-cmds = "100"
+cmds = "101"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1584,7 +1602,7 @@ async def help(ctx):
    embed = discord.Embed(title = "Cosmos Commands", color = 0x6691D9, timestamp = datetime.datetime.utcnow(), description = "Cosmos's prefix is `?` If you need specific help on a command type `?help_<command>`")
    embed.set_author(name = '{} total commands'.format(cmds), icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters` | `suggestion`")
-   embed.add_field(name = "Utility Commands", value = "`invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `avatar` | `urband` | `advert` | `timer`")
+   embed.add_field(name = "Utility Commands", value = "`mail` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `avatar` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
    embed.add_field(name = "Administrative Commands", value = "`nick` | `massnick` | `clearnicks` | `kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `clear`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
@@ -1603,6 +1621,13 @@ async def help_rtfm():
     h = discord.Embed(title = "Rtfm Command", color = 0x6691D9, description = "Sends the corrosponding link to your message")
     h.add_field(name = "Usage", value = "`?rtfm <event_message>`")
     h.add_field(name = "Note", value = "I don't allow spaces for this because they're not needed, like `rtfm wait_for_message`, pease don't requests fake/dumb links")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_mail():
+    h = discord.Embed(title = "Mail Command", color = 0x6691D9, description = "Sends a message to the given user through the bot")
+    h.add_field(name = "Usage", value = "`?mail <@user> or <username> then <message> (rest is interactive setup)`")
+    h.add_field(name = "Note", value = "Dont't overuse this, this command has a 1 minute cooldown to prevent idioticy")
     await bot.say(embed = h)
     
 @bot.command()
