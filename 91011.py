@@ -315,7 +315,7 @@ async def mail(ctx, member : discord.Member, *, message : str):
     sender=ctx.message.author.name
     await bot.say("Provide a title. (NA if none)`30s`")
     title = await bot.wait_for_message(timeout = 30.0, author = ctx.message.author)
-    await bot.say("Would you like to attach a thumbnail? If so send a link. (NA if none)`30s`")
+    await bot.say("Would you like to attach a thumbnail? If so send a link, only discord attachments work. (NA if none)`30s`")
     image = await bot.wait_for_message(timeout = 30.0, author = ctx.message.author)
 #    await bot.say("Please provide a subject. (NA if none)`30s`")
 #    subject = await bot.wait_for_message(timeout = 30.0, author = ctx.message.author)
