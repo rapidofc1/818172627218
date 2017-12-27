@@ -44,29 +44,28 @@ async def on_command_error(error, ctx):
     print('Ignoring exception in command {}:'.format(ctx.command), file = sys.stderr)
     traceback.print_exception(type(error), error, error.__traceback__, file = sys.stderr)
 
-@bot.event
-async def on_member_join(member: discord.Member):
+#@bot.event
+#async def on_member_join(member: discord.Member):
 #    if ctx.message.server.id == "377833468324872193":
 #      server = server.name
 #      count = server.member_count
-      embed=discord.Embed(timestamp=datetime.datetime.utcnow(), color=member.color, description=":books: | Refer to admins and the owner for questions!")
-      embed.set_author(icon_url=member.avatar_url, name="{}#{} Welcome to the server!".format(member.name, member.discriminator))
-      embed.set_thumbnail(url=member.avatar_url)
-      embed.set_footer(text="User#{}".format(member.discriminator))
-      #await bot.send_message(bot.get_channel("377834443525849088"), content=member.id, embed=embed)
-      await bot.send_message(bot.get_channel("374358230299705348"), content=member.id, embed=embed)
+#      embed=discord.Embed(timestamp=datetime.datetime.utcnow(), color=member.color, description=":books: | Refer to admins and the owner for questions!"#      embed.set_author(icon_url=member.avatar_url, name="{}#{} Welcome to the server!".format(member.name, member.discriminator))
+#      embed.set_thumbnail(url=member.avatar_url)
+#      embed.set_footer(text="User#{}".format(member.discriminator))
+#      #await bot.send_message(bot.get_channel("377834443525849088"), content=member.id, embed=embed)
+#      await bot.send_message(bot.get_channel("374358230299705348"), content=member.id, embed=embed)
 
-@bot.event
-async def on_member_remove(member: discord.Member):
+#@bot.event
+#async def on_member_remove(member: discord.Member):
 #    if ctx.message.server.id == "377833468324872193":
 #      server = server.name
 #      count = server.member_count
-      embed=discord.Embed(timestamp=datetime.datetime.utcnow(), color=member.color, description=":door: | Sad to see you leave {}".format(member.name))
-      embed.set_author(icon_url=member.avatar_url, name="{}#{} Left the server.".format(member.name, member.discriminator))
-      embed.set_thumbnail(url=member.avatar_url)
-      embed.set_footer(text="User#{}".format(member.discriminator))
-      #await bot.send_message(bot.get_channel("377834443525849088"), content=member.id, embed=embed)
-      await bot.send_message(bot.get_channel("374358230299705348"), content=member.id, embed=embed)
+#      embed=discord.Embed(timestamp=datetime.datetime.utcnow(), color=member.color, description=":door: | Sad to see you leave {}".format(member.name))
+#      embed.set_author(icon_url=member.avatar_url, name="{}#{} Left the server.".format(member.name, member.discriminator))
+#      embed.set_thumbnail(url=member.avatar_url)
+#      embed.set_footer(text="User#{}".format(member.discriminator))
+#      await bot.send_message(bot.get_channel("377834443525849088"), content=member.id, embed=embed)
+#      await bot.send_message(bot.get_channel("374358230299705348"), content=member.id, embed=embed)
     
 @bot.event
 async def on_message(message):
