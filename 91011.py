@@ -467,6 +467,24 @@ async def removerole(ctx, member : discord.Member, *, role_name: discord.Role):
     await bot.say("**:white_check_mark: | Removed the role {} from {}.**".format(role_name, member.name))
     
 @bot.command(pass_context=True)
+async def createrole(ctx,*, name : str):
+    if not ctx.message.author.server_permissions.manage_roles:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    await bot.create_role(ctx.message.server, name=name, reason=f"Created by {ctx.message.author.name}", permissions=ctx.message.server.default_role.permissions)
+    await bot.say("**:white_check_mark: | I've created the role `{}`.**".format(name))
+
+@bot.command(pass_context=True)
+async def deleterole(ctx,*, name : str):
+    role = discord.utils.get(ctx.message.server.roles, name=name)
+    if not ctx.message.author.server_permissions.manage_roles:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    if role is None:
+        await bot.say("**:x: | That role doesn't exist.**")
+        return
+    await bot.delete_role(ctx.message.server, role)
+    await bot.say("**:white_check_mark: | I've deleted the role `{}`.**".format(name))
+    
+@bot.command(pass_context=True)
 async def clear(ctx, number):
     if not ctx.message.author.server_permissions.manage_messages:
       return await bot.say("**:x: | Insufficient permissions.**")
@@ -1006,7 +1024,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **105**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **107**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1645,7 +1663,7 @@ async def rtfm_rewrite():
 async def rtfm_async():
     await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/async/**")
     
-cmds = "105"
+cmds = "107"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1655,7 +1673,7 @@ async def help(ctx):
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters` | `suggestion`")
    embed.add_field(name = "Utility Commands", value = "`messagessent` | `mail` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `avatar` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
-   embed.add_field(name = "Administrative Commands", value = "`nick` | `massnick` | `clearnicks` | `kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `clear`")
+   embed.add_field(name = "Administrative Commands", value = "`nick` | `massnick` | `clearnicks` | `kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `createrole` | `deleterole` | `clear`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `neko` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Miscellaneous Commands", value ="`embedsay` | `say` | `emojify` | `scramble` | `widentext` | `fingers` | `randomcommand` `gamertag` | `story` | `itsrapids` | `is` | `add` | `divide` | `multiply` | `subtract` | `power` |  `christmas` | `halloween` | `easter` | `saintpatrick` | `valentines`")
    embed.add_field(name = "MiniGame Commands", value = "`war` | `slots`")
@@ -1923,6 +1941,20 @@ async def help_removerole():
     h = discord.Embed(title = "Removerole Command", color = 0x6691D9, description = "Removes the given role from a member")
     h.add_field(name = "Usage", value = "`?removerole <@user> or <username> then <@role> or <rolename>`")
     h.add_field(name = "Note", value = "No mentions needed")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_createrole():
+    h = discord.Embed(title = "Createrole Command", color = 0x6691D9, description = "Creates a role on command by the given name")
+    h.add_field(name = "Usage", value = "`?createrole <rolename>`")
+    h.add_field(name = "Note", value = "Default permissions are assigned")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_deleterole():
+    h = discord.Embed(title = "Deleterole Command", color = 0x6691D9, description = "Deletes a role on command by the given name")
+    h.add_field(name = "Usage", value = "`?deleterole <rolename> or <@role>`")
+    h.add_field(name = "Note", value = "Empty...")
     await bot.say(embed = h)
     
 @bot.command()
