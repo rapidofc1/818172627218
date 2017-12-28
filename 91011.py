@@ -1972,7 +1972,7 @@ async def help_deleterole():
 async def help_renamerole():
     h = discord.Embed(title = "Renamerole Command", color = 0x6691D9, description = "Deletes a role on command by the given name")
     h.add_field(name = "Usage", value = "`?renamerole <rolename> then <newname>`")
-    h.add_field(name = "Note", value = "Don't mention, this method does not support the role ID")
+    h.add_field(name = "Note", value = "Don't mention, this method does not support the role ID, you cannot edit a role that has spaces, you can only rename the role to have spaces")
     await bot.say(embed = h)
     
 @bot.command()
