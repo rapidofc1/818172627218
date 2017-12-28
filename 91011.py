@@ -113,8 +113,8 @@ async def my_background_task():
         await asyncio.sleep(19.0)
         await bot.change_presence(game=discord.Game(name="Prefix = ?"))
         await asyncio.sleep(21.5)
-        await bot.change_presence(game=discord.Game(name="Christmas Music | Prefix = ?"))
-        await asyncio.sleep(23.5)
+        #await bot.change_presence(game=discord.Game(name="Christmas Music | Prefix = ?"))
+        #await asyncio.sleep(23.5)
 
 #class Pasta:
 #
