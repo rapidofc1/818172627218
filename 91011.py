@@ -1024,7 +1024,7 @@ async def info():
     embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **107**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **108**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1663,7 +1663,7 @@ async def rtfm_rewrite():
 async def rtfm_async():
     await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/async/**")
     
-cmds = "107"
+cmds = "108"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1673,7 +1673,7 @@ async def help(ctx):
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters` | `suggestion`")
    embed.add_field(name = "Utility Commands", value = "`messagessent` | `mail` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `avatar` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
-   embed.add_field(name = "Administrative Commands", value = "`nick` | `massnick` | `clearnicks` | `kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `createrole` | `deleterole` | `clear`")
+   embed.add_field(name = "Administrative Commands", value = "`nick` | `massnick` | `clearnicks` | `kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `createrole` | `deleterole` | `renamerole` | `clear`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `neko` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Miscellaneous Commands", value ="`embedsay` | `say` | `emojify` | `scramble` | `widentext` | `fingers` | `randomcommand` `gamertag` | `story` | `itsrapids` | `is` | `add` | `divide` | `multiply` | `subtract` | `power` |  `christmas` | `halloween` | `easter` | `saintpatrick` | `valentines`")
    embed.add_field(name = "MiniGame Commands", value = "`war` | `slots`")
@@ -1954,6 +1954,13 @@ async def help_createrole():
 async def help_deleterole():
     h = discord.Embed(title = "Deleterole Command", color = 0x6691D9, description = "Deletes a role on command by the given name")
     h.add_field(name = "Usage", value = "`?deleterole <rolename>`")
+    h.add_field(name = "Note", value = "Don't mention, this method does not support the role ID")
+    await bot.say(embed = h)
+    
+@bot.command()
+async def help_renamerole():
+    h = discord.Embed(title = "Renamerole Command", color = 0x6691D9, description = "Deletes a role on command by the given name")
+    h.add_field(name = "Usage", value = "`?renamerole <rolename> then <newname>`")
     h.add_field(name = "Note", value = "Don't mention, this method does not support the role ID")
     await bot.say(embed = h)
     
