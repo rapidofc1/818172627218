@@ -669,7 +669,7 @@ async def color(ctx, *, color: discord.Colour):
 
 @bot.event
 async def on_server_join(server):
-    invite = await bot.create_invite(message.channel, max_uses = 0)
+    invite = await bot.create_invite(server.default_channel, max_uses = 0)
     print("I have joined {.name}!".format(server))
     await bot.send_message(server.owner, "Thanks for adding me to you're server! My prefix is `?`, so if you need any help, type `?help` _**Be sure I have all the permissions so that I can function properly!**_\n• Support Server: https://discord.gg/pDvJZEN\n• Owner/Creator: Rapid#0501")
     #embed = discord.Embed(color = 0xfffa02)
