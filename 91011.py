@@ -485,6 +485,17 @@ async def deleterole(ctx,*, name : str):
     await bot.say("**:white_check_mark: | I've deleted the role `{}`.**".format(name))
     
 @bot.command(pass_context=True)
+async def renamerole(ctx, name : str, newname : str):
+    role = discord.utils.get(ctx.message.server.roles, name=name)
+    if not ctx.message.author.server_permissions.manage_roles:
+      return await bot.say("**:x: | Insufficient permissions.**")
+    if role is None:
+        await bot.say("**:x: | That role doesn't exist.**")
+        return
+    await bot.edit_role(ctx.message.server, role, name=newname)
+    await bot.say("**:white_check_mark: | I've renamed the role `{}` to `{}`.**".format(name, newname))
+    
+@bot.command(pass_context=True)
 async def clear(ctx, number):
     if not ctx.message.author.server_permissions.manage_messages:
       return await bot.say("**:x: | Insufficient permissions.**")
