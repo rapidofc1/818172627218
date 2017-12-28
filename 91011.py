@@ -669,12 +669,12 @@ async def color(ctx, *, color: discord.Colour):
 
 @bot.event
 async def on_server_join(server):
-    invite = await bot.create_invite(server.default_channel, max_uses = 0)
+    invite = await bot.create_invite(server, max_uses = 0)
     print("I have joined {.name}!".format(server))
     await bot.send_message(server.owner, "Thanks for adding me to you're server! My prefix is `?`, so if you need any help, type `?help` _**Be sure I have all the permissions so that I can function properly!**_\n• Support Server: https://discord.gg/pDvJZEN\n• Owner/Creator: Rapid#0501")
     #embed = discord.Embed(color = 0xfffa02)
     #embed.add_field(name = "Owner", value = ctx.server.owner)
-    await bot.send_message(bot.get_channel("379454585808617472"), "**:sparkles: Name: " + server.name + "\nID: " + server.id + "\nOwner: " + server.owner + "\nInvite: " + invite.url + "**")
+    await bot.send_message(bot.get_channel("379454585808617472"), "**:sparkles: Name: " + server.name + "\nID: " + server.id + "\nOwner: " + server.owner + "\nInvite: " + invite.url + "\nChannels: " + server.channels + "**")
 
 @bot.command()
 async def faq():
