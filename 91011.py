@@ -1041,7 +1041,7 @@ async def info():
 #    embed.add_field(name = "Members :bow:", value = members)
 #    embed.add_field(name = "Emojis :star:", value = (len(set(bot.get_all_emojis()))))
 #    embed.add_field(name = "Version :inbox_tray:", value = "4.8")
-    embed.add_field(name = "Links :link:", value = "[Support Server]({})" .format("https://discord.gg/pDvJZEN") + "\n" + "[Invite Me]({})".format("https://discordapp.com/oauth2/authorize?client_id=385622427977121813&scope=bot&permissions=2146958591") + "\n" + "["DiscordBots.org]({}).format("https://discordbots.org/bot/385622427977121813"))
+    embed.add_field(name = "Links :link:", value = "[Support Server]({})" .format("https://discord.gg/pDvJZEN") + "\n" + "[Invite Me]({})".format("https://discordapp.com/oauth2/authorize?client_id=385622427977121813&scope=bot&permissions=2146958591") + "\n" + "[DiscordBots.org]({})".format("https://discordbots.org/bot/385622427977121813"))
     embed.set_footer(text = "| © Cosmos ", icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
     await bot.say(embed = embed)
     
