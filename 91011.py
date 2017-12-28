@@ -1953,8 +1953,8 @@ async def help_createrole():
 @bot.command()
 async def help_deleterole():
     h = discord.Embed(title = "Deleterole Command", color = 0x6691D9, description = "Deletes a role on command by the given name")
-    h.add_field(name = "Usage", value = "`?deleterole <rolename> or <@role>`")
-    h.add_field(name = "Note", value = "Empty...")
+    h.add_field(name = "Usage", value = "`?deleterole <rolename>`")
+    h.add_field(name = "Note", value = "Don't mention, this method does not support the role ID")
     await bot.say(embed = h)
     
 @bot.command()
