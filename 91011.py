@@ -988,23 +988,6 @@ async def virus(user: discord.Member):
     await asyncio.sleep(2.0)
     await bot.edit_message(v, "Successfully injected WiHb.exe into **{}**!".format(user.name))
 
-@bot.command(pass_context=True)
-async def roles(ctx):
-    roles = ctx.message.server.roles
-    result = "All of the servers roles are "
-    for role in roles:
-        embed = discord.Embed(timestamp = datetime.datetime.utcnow(), color = ctx.message.author.color, description = "```" + role.name + "  =  " + role.id + "```\n")
-        embed.set_author(name = "All the server roles")
-        embed.set_footer(text = "| © Cosmos ")
-    await bot.say(embed = embed)
-    
-@bot.command(pass_context=True)
-async def emojis(ctx):
-    emojis = ctx.message.server.emojis
-    result = "All of the servers emojis are "
-    for emoji in emojis:
-        result += "```" + emoji.name + "```"
-
 #DEVELOPER COMMAND
 @bot.command(pass_context=True, aliases=["setl", "sl"])
 async def setlistening(ctx, *, text):
@@ -1064,7 +1047,7 @@ async def info():
     embed.add_field(name = "Made with <:Python:390560559113961472>", value = "Python Discord.py\nUsing Termux")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
-    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Unique Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Unique Online: **{}".format(sum(1 for m in unique_members if m.status != discord.Status.offline)) + "**\n" + "Total Members: **{}".format(sum(len(s.members) for s in bot.servers)) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **109**")
+    embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Unique Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Unique Online: **{}".format(sum(1 for m in unique_members if m.status != discord.Status.offline)) + "**\n" + "Total Members: **{}".format(sum(len(s.members) for s in bot.servers)) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **107**")
 #    embed.add_field(name = "Channels :radio:", value = (len(set(bot.get_all_channels()))))
 #    embed.add_field(name = "Members :bow:", value = (len(set(bot.get_all_members()))))
 #    embed.add_field(name = "Members :bow:", value = members)
@@ -1322,90 +1305,63 @@ async def starterpack():
     
 @bot.command(pass_context=True)
 async def userinfo(ctx, user: discord.Member):
-    if user.id == "371001497342836737":
-      embed = discord.Embed(color = ctx.message.author.color, description = "Game Status: {}".format(user.game))
-      embed.add_field(name = "NAME", value = user.name)
-      embed.add_field(name = "DISCORD ID", value = format(user.id))
-      embed.add_field(name = "STATUS", value = format(user.status))
-      embed.add_field(name = "BADGES", value = "<:dev:393838678943989761>")
-      embed.set_footer(text = "Account made at {}".format(user.created_at))
-      embed.set_thumbnail(url = format(user.avatar_url))
-      await bot.say(content = "Information on **" + user.name + "#" + user.discriminator + "**", embed = embed)
-    elif user.id in["371001497342836737", "389819327039406080"]:
-      embed = discord.Embed(color = ctx.message.author.color, description = "Game Status: {}".format(user.game))
-      embed.add_field(name = "NAME", value = user.name)
-      embed.add_field(name = "DISCORD ID", value = format(user.id))
-      embed.add_field(name = "STATUS", value = format(user.status))
-      embed.add_field(name = "BADGES", value = "<:dev:393838678943989761>")
-      embed.set_footer(text = "Account made at {}".format(user.created_at))
-      embed.set_thumbnail(url = format(user.avatar_url))
-      await bot.say(content = "Information on **" + user.name + "#" + user.discriminator + "**", embed = embed)
-    if not user.id in["371001497342836737", "389819327039406080"]:
-      embed = discord.Embed(color = ctx.message.author.color, description = "Game Status: {}".format(user.game))
-      embed.add_field(name = "NAME", value = user.name)
-#    embed.add_field(name = "NICKNAME", value = format(user.nick))
-      embed.add_field(name = "DISCORD ID", value = format(user.id))
-      embed.add_field(name = "STATUS", value = format(user.status))
-#    embed.add_field(name = "PLAYING", value = format (user.game))
-#    embed.add_field(name = "HIGHEST ROLE", value = format(user.top_role))
-#    embed.add_field(name = "JOINED AT", value = format(user.joined_at))
-#    embed.add_field(name = "JOIN POSITION", value = sorted(ctx.server.members, key=lambda m: m.joined_at).index(user) + 1)
-      embed.add_field(name = "BADGES", value = "`None`")
-      embed.set_footer(text = "Account made at {}".format(user.created_at))
-      embed.set_thumbnail(url = format(user.avatar_url))
-      await bot.say(content = "Information on **" + user.name + "#" + user.discriminator + "**", embed = embed)
-
+    embed = discord.Embed(color = user.color, description = "Game Status: {}".format(user.game))
+    embed.set_author(name=user.name, icon_url = user.avatar_url)
+    embed.add_field(name = "Name", value = user.name)
+    embed.add_field(name = "Discord ID", value = format(user.id))
+    embed.add_field(name = "Status", value = format(user.status))
+    embed.add_field(name = "Account Made At", value = formst(user.created_at))
+    embed.set_thumbnail(url = format(user.avatar_url))
+    await bot.say(embed = embed)
+    
 @bot.command(pass_context=True)
 async def serverinfo(ctx):
     embed = discord.Embed(color = 0xffffff)
-    embed.set_author(name = "The server info")
-    embed.add_field(name = "SERVER NAME", value = ctx.message.server.name)
-    embed.add_field(name = "SERVER ID", value = ctx.message.server.id)
-    embed.add_field(name = "OWNER", value = ctx.message.server.owner)
-    embed.add_field(name = "SERVER SIZE (BIG)", value = ctx.message.server.large)
-    embed.add_field(name = "VERIFICATION LEVEL", value = ctx.message.server.verification_level)
-    embed.add_field(name = "REGION", value = ctx.message.server.region)
-    embed.add_field(name = "MEMBERS", value = ctx.message.server.member_count)
-    embed.add_field(name = "SERVER MADE AT", value = ctx.message.server.created_at)
+    embed.set_author(name = ctx.message.server.name, icon_url = ctx.message.server.icon_url)
+    embed.add_field(name = "Server Name", value = ctx.message.server.name)
+    embed.add_field(name = "Server ID", value = ctx.message.server.id)
+    embed.add_field(name = "Owner", value = ctx.message.server.owner)
+    embed.add_field(name = "Server Size (Big)", value = ctx.message.server.large)
+    embed.add_field(name = "Verification Level", value = ctx.message.server.verification_level)
+    embed.add_field(name = "Region", value = ctx.message.server.region)
+    embed.add_field(name = "Members", value = ctx.message.server.member_count)
+    embed.add_field(name = "Server Made At", value = ctx.message.server.created_at)
     embed.set_thumbnail(url = ctx.message.server.icon_url)
     await bot.say(embed = embed)
     
 @bot.command(pass_context=True)
 async def roleinfo(ctx, *,role: discord.Role):
     embed = discord.Embed(color = role.color)
-    embed.set_author(name = "The role info")
-    embed.add_field(name = "ROLE NAME", value = format(role.name))
-    embed.add_field(name = "ROLE ID", value = format(role.id))
-    embed.add_field(name = "FOR SERVER", value = format(role.server))
-    embed.add_field(name = "HOIST", value = format(role.hoist))
-    embed.add_field(name = "ROLE POSITION", value = format(role.position))
-    embed.add_field(name = "MENTIONABLE ROLE", value = format(role.mentionable))
-    embed.add_field(name = "ROLE CREATED AT", value = format(role.created_at))
+    embed.set_author(name = role.name)
+    embed.add_field(name = "Role Nsme", value = format(role.name))
+    embed.add_field(name = "Role ID", value = format(role.id))
+    embed.add_field(name = "Hoist", value = format(role.hoist))
+    embed.add_field(name = "Role Position", value = format(role.position))
+    embed.add_field(name = "Is Mentionable", value = format(role.mentionable))
+    embed.add_field(name = "Role Made At", value = format(role.created_at))
     await bot.say(embed = embed)
 
 @bot.command(pass_context=True)
 async def channelinfo(ctx, *,channel: discord.Channel):
     embed = discord.Embed(color = ctx.message.author.color)
-    embed.set_author(name = "The channel info")
-    embed.add_field(name = "CHANNEL NAME", value = format(channel.name))
-    embed.add_field(name = "CHANNEL ID", value = format(channel.id))
-    embed.add_field(name = "FOR SERVER", value = format(channel.server))
-    embed.add_field(name = "TOPIC", value = format(channel.topic))
-    embed.add_field(name = "CHANNEL POSITION", value = (channel.position))
-    embed.add_field(name = "CHANNEL TYPE", value = format(channel.type))
-    embed.add_field(name = "CHANNEL CREATED AT", value = format(channel.created_at))
+    embed.set_author(name = channel.name)
+    embed.add_field(name = "Channel Name", value = format(channel.name))
+    embed.add_field(name = "Channel ID", value = format(channel.id))
+    embed.add_field(name = "Topic", value = format(channel.topic))
+    embed.add_field(name = "Channel Position", value = (channel.position))
+    embed.add_field(name = "Channel Type", value = format(channel.type))
+    embed.add_field(name = "Channel Made At", value = format(channel.created_at))
     await bot.say(embed = embed)
 
 @bot.command(pass_context=True)
 async def emojiinfo(ctx, *,emoji: discord.Emoji):
     embed = discord.Embed(color = ctx.message.author.color)
-    embed.set_author(name = "The emoji info")
-    embed.add_field(name = "EMOJI NAME", value = format(emoji.name))
-    embed.add_field(name = "EMOJI ID", value = format(emoji.id))
-    embed.add_field(name = "FOR SERVER", value = format(emoji.server))
-    embed.add_field(name = "COLONS", value = format(emoji.require_colons))
-    embed.add_field(name = "EMOJI URL", value = format(emoji.url))
-    embed.add_field(name = "EMOJI CREATED AT", value = format(emoji.created_at))
+    embed.set_author(name = emoji.name, icon_url = emoji.url)
+    embed.add_field(name = "Emoji Name", value = format(emoji.name))
+    embed.add_field(name = "Emoji ID", value = format(emoji.id))
+    embed.add_field(name = "Require Colons", value = format(emoji.require_colons))
+    embed.add_field(name = "Emoji URL", value = format(emoji.url))
+    embed.add_field(name = "Emoji Made At", value = format(emoji.created_at))
     embed.set_thumbnail(url = emoji.url)
     await bot.say(embed = embed)
 
@@ -1694,7 +1650,7 @@ async def rtfm_rewrite():
 async def rtfm_async():
     await bot.say("**:mag_right: | http://discordpy.readthedocs.io/en/async/**")
     
-cmds = "109"
+cmds = "107"
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
@@ -1702,14 +1658,14 @@ async def help(ctx):
    embed = discord.Embed(title = "Cosmos Commands", color = 0x6691D9, timestamp = datetime.datetime.utcnow(), description = "Cosmos's prefix is `?` If you need specific help on a command type `?help_<command>`")
    embed.set_author(name = '{} total commands'.format(cmds), icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters` | `suggestion`")
-   embed.add_field(name = "Utility Commands", value = "`messagessent` | `mail` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `roles` | `avatar` | `servericon` | `urband` | `advert` | `timer`")
+   embed.add_field(name = "Utility Commands", value = "`messagessent` | `mail` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `avatar` | `servericon` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
    embed.add_field(name = "Administrative Commands", value = "`nick` | `massnick` | `clearnicks` | `kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `createrole` | `deleterole` | `renamerole` | `clear`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `neko` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
    embed.add_field(name = "Miscellaneous Commands", value ="`embedsay` | `say` | `emojify` | `scramble` | `widentext` | `fingers` | `randomcommand` `gamertag` | `story` | `itsrapids` | `is` | `add` | `divide` | `multiply` | `subtract` | `power` |  `christmas` | `halloween` | `easter` | `saintpatrick` | `valentines`")
    embed.add_field(name = "MiniGame Commands", value = "`war` | `slots`")
    embed.add_field(name = "Read the manual Commands", value = "`rtfm` | `rtfm_async` | `rtfm_rewrite`")
-   embed.add_field(name = "Discord.py Async HowTo's", value = "`tutBASICBOT` | `tutPING` | `tutSAY` | `tutCOINFLIP` | `tutONMESSAGE` | `tutONSERVERJOIN` | `tutTYPES` | `tutSERVERS` | `tutMEMBERS` | `tutCHANNELS` | `tutEMOJIS` | `tutERRORHANDLER` | `tutSETGAME` | `tutTERMUX`")
+   embed.add_field(name = "Discord.py Async HowTo's", value = "`tutBASICBOT` | `tutPING` | `tutSAY` | `tutCOINFLIP` | `tutTYPES` | `tutSERVERS` | `tutMEMBERS` | `tutCHANNELS` | `tutEMOJIS` | `tutERRORHANDLER` | `tutSETGAME` | `tutTERMUX`")
    embed.set_footer(text = "| © Cosmos ", icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.set_thumbnail(url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    await bot.send_message(user2send, embed = embed)
