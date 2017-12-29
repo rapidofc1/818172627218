@@ -1313,10 +1313,19 @@ async def userinfo(ctx, user: discord.Member):
     embed.add_field(name = "Account Made At", value = format(user.created_at))
     embed.set_thumbnail(url = format(user.avatar_url))
     await bot.say(embed = embed)
+    if not user:
+      embed = discord.Embed(color = ctx.message.author.color, description = "Game Status: {}".format(ctx.message.author.game))
+      embed.set_author(name=user.name, icon_url = ctx.message.author.avatar_url)
+      embed.add_field(name = "Name", value = ctx.message.author.name)
+      embed.add_field(name = "Discord ID", value = format(ctx.message.author.id))
+      embed.add_field(name = "Status", value = format(ctx.message.author.status))
+      embed.add_field(name = "Account Made At", value = format(ctx.message.author.created_at))
+      embed.set_thumbnail(url = format(ctx.message.author.avatar_url))
+      await bot.say(embed = embed)
     
 @bot.command(pass_context=True)
 async def serverinfo(ctx):
-    embed = discord.Embed(color = 0xffffff)
+    embed = discord.Embed(color = ctx.message.author.color)
     embed.set_author(name = ctx.message.server.name, icon_url = ctx.message.server.icon_url)
     embed.add_field(name = "Server Name", value = ctx.message.server.name)
     embed.add_field(name = "Server ID", value = ctx.message.server.id)
