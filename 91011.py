@@ -469,7 +469,7 @@ async def softban(ctx, member : discord.Member, purge: int = 1):
 @bot.command(pass_context=True)
 async def warn(ctx, member : discord.Member, *, reason: str):
     if not ctx.message.author.server_permissions.kick_members:
-        return await bot.say("**:x: | You cannot to do that.**\nReason: **Insufficient Permissions(KickMembers)**")
+        return await bot.say("**:x: | Insufficient permissions.**")
 #    if not user:
 #        return await bot.say(ctx.message.author.mention + " Specify a user to warn!")
     await bot.send_message(member, "**You have been warned in {}!\nReason: {}**".format(ctx.message.server.name, reason))
