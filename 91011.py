@@ -1153,7 +1153,7 @@ async def power(left,right):
     answer=int(left) ** int(right)
     await bot.say("**:ledger: | That equals: {}**".format(answer))
 
-odious server command
+#odious server command
 @bot.command(pass_context=True)
 async def rape(ctx, *, member: discord.Member = None ):
     at=ctx.message.author.name
