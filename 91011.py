@@ -1310,7 +1310,7 @@ async def userinfo(ctx, user: discord.Member):
     embed.add_field(name = "Name", value = user.name)
     embed.add_field(name = "Discord ID", value = format(user.id))
     embed.add_field(name = "Status", value = format(user.status))
-    embed.add_field(name = "Account Made At", value = formst(user.created_at))
+    embed.add_field(name = "Account Made At", value = format(user.created_at))
     embed.set_thumbnail(url = format(user.avatar_url))
     await bot.say(embed = embed)
     
@@ -1374,15 +1374,11 @@ async def urband(*msg):
         async with session.get(api, params={'term': word}) as r:
             response = await r.json()
         if len(response["list"]) == 0:
-            x = "Could not find that word!"
-            embed=discord.Embed(title='Error', color=0xFF0000)
-            embed.description = x
-            await bot.say(embed=embed)
-
+            await bot.say("**:x: | Could not find that word.**")
         else:
-                embed = discord.Embed(title = 'Urban Dictionary - ' + word, color = 0x8f07ff)
+                embed = discord.Embed(title = 'Urban Dictionary, color = ctx.message.author.color)
                 embed.description = response['list'][0]['definition']
-                embed.set_thumbnail(url = "https://images-ext-2.discordapp.net/external/B4lcjSHEDA8RcuizSOAdc92ithHovZT6WkRAX-da_6o/https/erisbot.com/assets/emojis/urbandictionary.png")
+                embed.set_author(name = word, icon_url = ctx.message.author.avatar_url)
                 embed.add_field(name = "Examples:", value = response['list'][0]["example"][:1000])
                 embed.set_footer(text = "Tags: " + ', '.join(response['tags']))
                 await bot.say(embed = embed)
