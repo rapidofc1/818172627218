@@ -837,11 +837,11 @@ async def dm(ctx, user : discord.Member, *, message: str):
       await bot.say("**:white_check_mark: | Message sent to user!**")
 
 #DEVELOPER COMMAND
-@bot.command(pass_context=True)
-async def message(ctx, user : discord.Member, *, message: str):
-    if ctx.message.author.id == "371001497342836737":
-      await bot.send_message(destination = user, msssage)
-      await bot.send_message(ctx.message.author, f"**:white_check_mark: | Message sent to {member.name}!**")
+#@bot.command(pass_context=True)
+#async def message(ctx, user : discord.Member, *, message: str):
+#    if ctx.message.author.id == "371001497342836737":
+#      await bot.send_message(destination = user, msssage)
+#      await bot.send_message(ctx.message.author, f"**:white_check_mark: | Message sent to {member.name}!**")
 
 #DEVELOPER COMMAND
 @bot.command(pass_context=True)
