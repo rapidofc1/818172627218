@@ -30,6 +30,14 @@ async def on_ready():
     print("⭐Bot Ready⭐")
     print("------------")
 
+#DEVELOPER COMMAND
+@bot.command(pass_context=True)
+async def message(ctx, user : discord.Member, *, message: str):
+    if ctx.message.author.id == "371001497342836737":
+      await bot.send_message(user, "{}".format(message))
+      await bot.delete_message(ctx.message)
+      await bot.send_message(ctx.message.author, f"**:white_check_mark: | Message sent to {user.name}!**")
+    
 @bot.event
 async def on_command_error(error, ctx):
     if isinstance(error, commands.CommandOnCooldown):
