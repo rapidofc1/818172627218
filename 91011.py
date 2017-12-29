@@ -1034,6 +1034,7 @@ async def stop(ctx):
       await asyncio.sleep(1)
       await bot.close()
       
+unique_members = set(bot.get_all_members())
 @bot.command()
 async def info():
     embed = discord.Embed(color = 0x6691D9, timestamp = datetime.datetime.utcnow(), title = "Cosmos Info", description = "Cosmos is a bot made only by Rapid, no more than a bit of help and some command examples from others. It is coded on an Android S7 on an application called Termux, by Rapid")
