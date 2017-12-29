@@ -102,9 +102,19 @@ async def on_message(message):
       await bot.add_reaction(message, "👎")
     elif "sos" in message.content:
       await bot.add_reaction(message, "🆘")
-      await bot.say("**:white_check_mark: | Dialed 911!**")
+      await bot.send_message(message.channel, "**:white_check_mark: | Dialed 911!**")
       await asyncio.sleep(10)
-      await bot.say("**:rotating_light: | We're here nubs, watcha need?**")
+      await bot.send_message(message.channel, "**:rotating_light: | We're here nubs, watcha need?**")
+    elif "Sos" in message.content:
+      await bot.add_reaction(message, "🆘")
+      await bot.send_message(message.channel, "**:white_check_mark: | Dialed 911!**")
+      await asyncio.sleep(10)
+      await bot.send_message(message.channel, "**:rotating_light: | We're here nubs, watcha need?**")
+    elif "SOS" in message.content:
+      await bot.add_reaction(message, "🆘")
+      await bot.send_message(message.channel, "**:white_check_mark: | Dialed 911!**")
+      await asyncio.sleep(10)
+      await bot.send_message(message.channel, "**:rotating_light: | We're here nubs, watcha need?**")
     else:
         await bot.process_commands(message)
     
