@@ -1153,10 +1153,13 @@ async def power(left,right):
     answer=int(left) ** int(right)
     await bot.say("**:ledger: | That equals: {}**".format(answer))
 
+odious server command
 @bot.command(pass_context=True)
 async def rape(ctx, *, member: discord.Member = None ):
+    at=ctx.message.author.name
+    m=member.name
     if ctx.message.server.id == "374358230299705346":
-      r=discord.Embed(description = "**{}** was intesively raped by **{}** ".format(member.name, ctx.message.author.name), color = ctx.message.author.color)
+      r=discord.Embed(color = ctx.message.author.color, description = (random.choice([f"**{m}** was intesively raped by **{at}**", f"**{m} was penetrated by {at}!**", f"This random cum-stain named **{m}**, was deeply raped by some perv named **{at}.**", f"**{m}** was double-penetrated by **{at}**"])))
       await bot.say(embed=r)
     
 @bot.command(pass_context=True)
