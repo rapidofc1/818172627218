@@ -100,6 +100,11 @@ async def on_message(message):
       await bot.add_reaction(message, "👍")
       await bot.add_reaction(message, "🤷")
       await bot.add_reaction(message, "👎")
+    elif "sos" in message.content:
+      await bot.add_reaction(message, "🆘")
+      await bot.say("**:white_check_mark: | Dialed 911!**")
+      await asyncio.sleep(10)
+      await bot.say("**:rotating_light: | We're here nubs, watcha need?**")
     else:
         await bot.process_commands(message)
     
@@ -1042,7 +1047,7 @@ async def info():
     embed.set_thumbnail(url = "https://cdn.discordapp.com/attachments/379454585808617472/389255356636987394/20171206_140705.jpg")
     embed.add_field(name = "Owner/Creator :spy:", value = "Rapid#0501")
 #    embed.add_field(namr = "Uptime :timer:", value = uptime)
-    embed.add_field(name = "Running on <:Python:390560559113961472>", value = "Python Discord.py\nOn Termux, Nano\n(Soon on PC)")
+    embed.add_field(name = "Made with <:Python:390560559113961472>", value = "Python Discord.py\nUsing Termux")
 #    embed.add_field(name = "Memory :package:", value = f"{ramUsage:.2f} MB")
 #    embed.add_field(name = "CUP :desktop:", value = cpu_text)
     embed.add_field(name = "Population :star:", value = "Servers: **{}".format(len(bot.servers)) + "**\n" + "Unique Members: **{}".format(len(set(bot.get_all_members()))) + "**\n" + "Unique Online: **{}".format(sum(1 for m in unique_members if m.status != discord.Status.offline)) + "**\n" + "Total Members: **{}".format(sum(len(s.members) for s in bot.servers)) + "**\n" + "Members Online:  **{}".format(sum(1 for m in bot.get_all_members() if m.status != discord.Status.offline)) + "**\n" + "Channels: **{}".format(len(set(bot.get_all_channels()))) + "**\n" + "Emojis: **{}".format(len(set(bot.get_all_emojis()))) + "**\n" + "Total Commands: **109**")
