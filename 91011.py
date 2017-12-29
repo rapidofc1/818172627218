@@ -1152,6 +1152,12 @@ async def _is(left, right):
 async def power(left,right):
     answer=int(left) ** int(right)
     await bot.say("**:ledger: | That equals: {}**".format(answer))
+
+@bot.command(pass_context=True)
+async def rape(ctx, *, member: discord.Member = None ):
+    if ctx.message.server.id == "374358230299705346":
+      r=discord.Embed(description = "**{}** was intesively raped by **{}** ".format(member.name, ctx.message.author.name), color = ctx.message.author.color)
+      await bot.say(embed=r)
     
 @bot.command(pass_context=True)
 async def kill(ctx, *, member: discord.Member = None):
