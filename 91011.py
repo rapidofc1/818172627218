@@ -357,8 +357,8 @@ async def mail(ctx, member : discord.Member, *, message : str):
     sender=ctx.message.author.name
     await bot.say("Provide a title. (NA if none)`30s`")
     title = await bot.wait_for_message(timeout = 30.0, author = ctx.message.author)
-    await bot.say("Would you like to attach a thumbnail? If so send a link, only discord attachments work. (NA if none)`200s`")
-    image = await bot.wait_for_message(timeout = 200.0, author = ctx.message.author)
+#    await bot.say("Would you like to attach a thumbnail? If so send a link, only discord attachments work. (NA if none)`200s`")
+#   image = await bot.wait_for_message(timeout = 200.0, author = ctx.message.author)
 #    await bot.say("Please provide a subject. (NA if none)`30s`")
 #    subject = await bot.wait_for_message(timeout = 30.0, author = ctx.message.author)
     m=discord.Embed(color=0x42b6f4, title="{}".format(title.content), description="{}".format(message), timestamp=datetime.datetime.utcnow())
@@ -838,10 +838,10 @@ async def dm(ctx, user : discord.Member, *, message: str):
 
 #DEVELOPER COMMAND
 @bot.command(pass_context=True)
-async def edm(ctx, user : discord.Member, *, message: str):
+async def message(ctx, user : discord.Member, *, message: str):
     if ctx.message.author.id == "371001497342836737":
-      await bot.send_message("Message: ".format(message), destination = user)
-      await bot.say("**:white_check_mark: | Message sent to user!**")
+      await bot.send_message(destination = user, "{}".format(msssage))
+      await bot.send_message(ctx.message.author, f"**:white_check_mark: | Message sent to {member.name}!**")
 
 #DEVELOPER COMMAND
 @bot.command(pass_context=True)
