@@ -1385,7 +1385,7 @@ async def urband(*msg):
         if len(response["list"]) == 0:
             await bot.say("**:x: | Could not find that word.**")
         else:
-                embed = discord.Embed(title = 'Urban Dictionary, color = ctx.message.author.color)
+                embed = discord.Embed(title = "Urban Dictionary", color = ctx.message.author.color)
                 embed.description = response['list'][0]['definition']
                 embed.set_author(name = word, icon_url = ctx.message.author.avatar_url)
                 embed.add_field(name = "Examples:", value = response['list'][0]["example"][:1000])
