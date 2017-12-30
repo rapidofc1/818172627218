@@ -118,6 +118,11 @@ async def on_message(message):
     else:
         await bot.process_commands(message)
     
+async def auto_message():
+    await bot.wait_until_ready()
+        await bot.send_message(bot.get_channel("374358230299705348"), "This is an automated message, **test**.")
+        await asyncio.sleep(21.5)
+    
 async def my_background_task():
     await bot.wait_until_ready()
     servs = (len(bot.servers))
@@ -2077,6 +2082,7 @@ async def randomcommand():
     rc.add_field(name="About", value="Commands you see here, and not in the **help** command, are for testing.")
     await bot.say(embed=rc)
             
+bot.loop.create_task(auto_message())
 bot.loop.create_task(my_background_task())
 if not os.environ.get('TOKEN'):
     print("no token found!")
