@@ -388,7 +388,7 @@ async def mail(ctx, member : discord.Member, *, message : str):
     m=discord.Embed(color=0x42b6f4, title="{}".format(title.content), description="{}".format(message), timestamp=datetime.datetime.utcnow())
     m.set_author(name="New mail from {}!".format(sender))
 #    m.add_field(name=":envelope_with_arrow: | Mail recieved.", value="{}".format(subject.content))
-    m.set_thumbnail(url="{}".format(image.content))
+#    m.set_thumbnail(url="{}".format(image.content))
     m.set_footer(text="{}#{} ".format(sender, ctx.message.author.discriminator), icon_url=ctx.message.author.avatar_url)
     await bot.send_message(member, embed=m)
     await bot.say("**:white_check_mark: | Message sent to {}#{}.**".format(member.name, member.discriminator))
