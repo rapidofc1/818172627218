@@ -121,8 +121,8 @@ async def on_message(message):
 async def auto_message():
     await bot.wait_until_ready()
     while not bot.is_closed:
-        await bot.send_message(bot.get_channel("374358230299705348"), "This is an automated message, **test**.")
-        await asyncio.sleep(100)
+        await bot.send_message(bot.get_channel("374358230299705348"), random.choice(["**This is an automated message, Rapid sucked dick to keep me running.**", "**Don't spam, okay? :P**"]))
+        await asyncio.sleep(500)
     
 async def my_background_task():
     await bot.wait_until_ready()
