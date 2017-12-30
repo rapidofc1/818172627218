@@ -121,8 +121,7 @@ async def on_message(message):
 async def auto_message():
     await bot.wait_until_ready()
     while not bot.is_closed:
-        await bot.send_message(bot.get_channel("374358230299705348"), random.choice(["**This is an automated message, Rapid sucked dick to keep me running.**", "**Don't spam, okay? :P**"]))
-        await asyncio.sleep(500)
+        await bot.send_message(bot.get_channel("374358230299705348"), random.choice(["**This is an automated message, Rapid sucked dick to keep me running.**", "**Hey you there! Yes you! You're probably use to these unoriginal and unfunny ads aren't you? Well, what if I told you that if you joined my server and left all the other servers that you wouldn't have to deal with ads anymore? You know you wanna!\nRun, don't walk to Odious land!\nhttps://discord.gg/tDRYUc8**"]))
     
 async def my_background_task():
     await bot.wait_until_ready()
