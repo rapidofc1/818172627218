@@ -141,7 +141,6 @@ async def my_background_task():
         await bot.change_presence(game=discord.Game(name="on {} channels".format(chans)))
         await asyncio.sleep(19.0)
         await bot.change_presence(game=discord.Game(name="Prefix = ?"))
-        await bot.send_message(bot.get_channel("374358230299705348"), "This is an automated message, **test**.")
         await asyncio.sleep(21.5)
         #await bot.change_presence(game=discord.Game(name="Christmas Music | Prefix = ?"))
         #await asyncio.sleep(23.5)
