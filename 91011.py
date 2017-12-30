@@ -120,6 +120,7 @@ async def on_message(message):
     
 async def auto_message():
     await bot.wait_until_ready()
+    while not bot.is_closed:
         await bot.send_message(bot.get_channel("374358230299705348"), "This is an automated message, **test**.")
         await asyncio.sleep(21.5)
     
