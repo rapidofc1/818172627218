@@ -13,7 +13,6 @@ chardet==3.0.4
 clients==0.5
 colorama==0.3.9
 DateTime==4.2
-discord==0.0.2
 discord.py==1.0.0a1418+g6813280
 Django==1.11.7
 docutils==0.14
