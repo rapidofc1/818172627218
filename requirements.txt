@@ -1,4 +1,4 @@
-git+https://github.com/Rapptz/discord.py@rewrite
+git+https://github.com/Rapptz/discord.py@async
 aiohttp==2.2.5
 async==0.6.2
 async-timeout==2.0.0
