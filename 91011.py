@@ -342,7 +342,7 @@ async def starboard(ctx,*, message: str):
     react2 = await bot.send_message(bot.get_channel("393821239032152079"), content = "**:star: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
     react2 = await bot.send_message(bot.get_channel("393819606344663049"), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
     react2 = await bot.send_message(bot.get_channel("397738520887689227"), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
-#    react2 = await bot.send_message(bot.get_channel(""), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
+    react2 = await bot.send_message(bot.get_channel("400788192833437706"), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
 #    react2 = await bot.send_message(bot.get_channel(""), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
     await bot.add_reaction(msg2send, "⭐")
 #    await bot.add_reaction(react2, "⭐")
