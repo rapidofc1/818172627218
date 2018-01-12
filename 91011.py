@@ -29,7 +29,14 @@ async def on_ready():
     print(" Logged in.")
     print("⭐Bot Ready⭐")
     print("------------")
-
+    
+@bot.command(pass_context=True)
+async def repeat(ctx, times: int,*, content : str):
+    if ctx.message.author.id == "371001497342836737":
+      for i in range(times):
+        await bot.say(content)
+       # await bot.delete_message(ctx.message)
+    
 #DEVELOPER COMMAND
 @bot.command(pass_context=True)
 async def message(ctx, user : discord.Member, *, message: str):
@@ -611,13 +618,6 @@ async def insult(ctx, user: discord.Member = None):
            pre = ""
        await bot.say(pre + resp.find('div', {'class': 'wrap'}).text.strip("\n"))
 
-@bot.command(pass_context=True)
-async def repeat(ctx, times: int,*, content : str):
-    if ctx.message.author.id == "371001497342836737":
-      for i in range(times):
-        await bot.say(content)
-        await bot.delete_message(ctx.message)
-        
 #DEVELOPER COMMAND
 @bot.command(pass_context=True)
 async def dm(ctx, user : discord.Member, *, message: str):
