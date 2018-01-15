@@ -334,10 +334,11 @@ async def invitegenerator(ctx, text : str):
     l.add_field(name="Here is your link!", value="[Click Me]({})".format("https://discordapp.com/oauth2/authorize?client_id={}&scope=bot&permissions=8".format(text)))
     await bot.say(embed=l)
         
+colors = random.choice([42adf4, 1df733])        
 @bot.command(aliases=["post"], pass_context=True)
 async def gpost(ctx,*, message: str):
 #    await bot.delete_message(ctx.message) (This is optional. It'll delete the command message if the hash, aswell as this message is removed.)
-    embed = discord.Embed(color = random.choice([42adf4, 1df733]), description = "" + message + "")
+    embed = discord.Embed(color = colors, description = "" + message + "")
     embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
 #    msg2send = await bot.say(content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
 #    await bot.say("Would you like to publish this quote to the 'quotes' channel? **Yes/No**")
