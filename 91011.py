@@ -1318,7 +1318,7 @@ async def config_gpostid(ctx):
     if not ctx.message.author.server_permissions.administrator:
       return await bot.say("**:x: | You cannot do that, get the owner or administrator to do this.**")
     invite = await bot.create_invite(ctx.message.channel, max_uses = 0)
-    embed = discord.Embed(color = 0xffffff, title = "CBR - Invite to {}!".format(ctx.message.server), color = ctx.message.author.color, url = "{}".format(invite.url)) #, description = "Starboard ID: {}".format(message))
+    embed = discord.Embed(title = "CBR - Invite to {}!".format(ctx.message.server), color = ctx.message.author.color, url = "{}".format(invite.url)) #, description = "Starboard ID: {}".format(message))
     embed.add_field(name = "Server", value = ctx.message.server.name)
     embed.add_field(name = "Server ID", value = ctx.message.server.id)
     embed.add_field(name = "Server User Count", value = ctx.message.server.member_count)
