@@ -1327,7 +1327,7 @@ async def config_gpostid(ctx):
     embed.add_field(name = "Requester", value = ctx.message.author.name)
     embed.set_thumbnail(url = ctx.message.server.icon_url)
     await bot.send_message(bot.get_channel("379454585808617472"), content = "**Channel ID: " + ctx.message.channel.id + "**", embed = embed)
-    await bot.say("**:white_check_mark: | Starboard request sent, now make sure no one can actually type in this channel.\nREMINDER:  I will only accept this request if the channel name is 'starboard'**")
+    await bot.say("**:white_check_mark: | Starboard request sent, now make sure no one can actually type in this channel.\nREMINDER:  I will only accept this request if the channel name is 'cosmos-global'**")
 
 @bot.command(pass_context=True)
 async def widentext(ctx,*, text : str):
