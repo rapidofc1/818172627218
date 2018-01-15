@@ -48,7 +48,7 @@ async def message(ctx, user : discord.Member, *, message: str):
 @bot.event
 async def on_command_error(error, ctx):
     if isinstance(error, commands.CommandOnCooldown):
-      await bot.send_message(ctx.message.channel, "**:x: | This command is on cooldown, try again later. (╯°□°）╯︵ ┻━┻**")
+      await bot.send_message(ctx.message.channel, "**:x: | This command is on cooldown, try again soon.**")
 
 #    elif isinstance(error, commands.CommandNotFound):
 #      await bot.send_message(ctx.message.channel, "**:x: | That command was not found! Type ?help for a list of commands.（￣～￣;）**")
@@ -1304,6 +1304,7 @@ async def tutinfo(ctx):
     await bot.say(embed = embed)
     
 @bot.command(pass_context=True)
+@commands.cooldown(1, 25, commands.BucketType.user)
 async def setup_gpost(ctx):
     if not ctx.message.author.server_permissions.administrator:
       return await bot.say("**:x: | You cannot do that, get the owner or administrator to do this.**")
@@ -1314,6 +1315,7 @@ async def setup_gpost(ctx):
 #    await bot.say("**:white_check_mark: | Done, soon you can now view the starboard in your server, make sure no one can actually type, except Cosmos, ofcourse. (be patient)**")
 
 @bot.command(pass_context=True)
+@commands.cooldown(1, 25, commands.BucketType.user)
 async def config_gpostid(ctx):
     if not ctx.message.author.server_permissions.administrator:
       return await bot.say("**:x: | You cannot do that, get the owner or administrator to do this.**")
