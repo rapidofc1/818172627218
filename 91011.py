@@ -478,7 +478,7 @@ async def faq():
 @bot.command(pass_context=True)
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def pick(ctx):
-    pick = discord.Embed(color = 0xf3a8bc, description = "**" + ctx.message.author.name + "**, you've picked {} 🌸".format(random.randint(1, 100)))
+    pick = discord.Embed(color = 0xf3a8bc, description = "**" + ctx.message.author.name + "**, you've picked {} :cherry_blossom:".format(random.randint(1, 100)))
     await bot.say(embed = pick)
 
 @bot.command(aliases=["inv", "in", "invent", "mystuff", "stuff"], pass_context=True)
@@ -1012,9 +1012,13 @@ async def shoot():
     await bot.say(random.choice([":basketball:  |  Wow you got it stuck... you throw a light wrist m8", ":basketball:  |  Dayum you got in... nice", ":basketball:  |  Wow, garbage, you need practice", ":basketball:  |  Toilet spin, close one pal", ":basketball:  |  Good try"]))
 
 @bot.command()
-async def dicklength():
-    await bot.say(random.choice([":straight_ruler:  |  8==D 3 inches... small asf", ":straight_ruler:  |  8=========D 10 inches... jesus wtf, your definately gettin\' laid", ":straight_ruler:  |  8D bro...", ":straight_ruler:  |  8========================D 27 INCHES....... bro your a GOD", ":straight_ruler:  |  8====D 5 inches... typical asf"]))
-
+async def dicklength(user: discord.Member):
+    state = random.getstate()
+    random.seed(user.id)
+    dong = "8{}D".format("=" * random.randint(0, 30))
+    random.setstate(state)
+    await bot.say(":straight_ruler: | " + dong)
+    
 @bot.command()
 async def amicool():
     await bot.say(random.choice([":wastebasket:  |  Nothing...", ":tada:  |  Cool!", ":skull_crossbones:  |  Your... well um... you ain\'t cool... sorry...", ":hole:  |  No words to describe you"]))
