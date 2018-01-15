@@ -334,26 +334,24 @@ async def invitegenerator(ctx, text : str):
     l.add_field(name="Here is your link!", value="[Click Me]({})".format("https://discordapp.com/oauth2/authorize?client_id={}&scope=bot&permissions=8".format(text)))
     await bot.say(embed=l)
         
-@bot.command(aliases=["s", "st", "star"], pass_context=True)
-async def starboard(ctx,*, message: str):
+@bot.command(aliases=["post"], pass_context=True)
+async def gpost(ctx,*, message: str):
 #    await bot.delete_message(ctx.message) (This is optional. It'll delete the command message if the hash, aswell as this message is removed.)
-    embed = discord.Embed(color = 0xffa92a, description = "" + message + "")
+    embed = discord.Embed(color = random.choice([42adf4, 1df733]), description = "" + message + "")
     embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
-    msg2send = await bot.say(content = "**:star: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+#    msg2send = await bot.say(content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
 #    await bot.say("Would you like to publish this quote to the 'quotes' channel? **Yes/No**")
 #    mag = await bot.wait_for_message(author = ctx.message.author, content = "Yes")
 #    await bot.send_message(bot.get_channel("392833879104290827"), "**:comet: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**")
-    react2 = await bot.send_message(bot.get_channel("392833879104290827"), content = "**:star: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
-    react2 = await bot.send_message(bot.get_channel("393094161764581399"), content = "**:star: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
-    react2 = await bot.send_message(bot.get_channel("393209121928642563"), content = "**:star: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
-    react2 = await bot.send_message(bot.get_channel("393821239032152079"), content = "**:star: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
-    react2 = await bot.send_message(bot.get_channel("393819606344663049"), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
-    react2 = await bot.send_message(bot.get_channel("397738520887689227"), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
-    react2 = await bot.send_message(bot.get_channel("400788192833437706"), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
-    react2 = await bot.send_message(bot.get_channel("402329246141251585"), content = "**:star: " + ctx.message.server.name + " ID: "+ ctx.message.server.id + "**", embed = embed)
-    await bot.add_reaction(msg2send, "⭐")
-#    await bot.add_reaction(react2, "⭐")
-    await bot.say("**:white_check_mark: | " + ctx.message.author.name + ", I've published your message!**")
+    react2 = await bot.send_message(bot.get_channel("392833879104290827"), content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+    react2 = await bot.send_message(bot.get_channel("393094161764581399"), content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+    react2 = await bot.send_message(bot.get_channel("393209121928642563"), content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+    react2 = await bot.send_message(bot.get_channel("393821239032152079"), content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+    react2 = await bot.send_message(bot.get_channel("393819606344663049"), content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+    react2 = await bot.send_message(bot.get_channel("397738520887689227"), content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+    react2 = await bot.send_message(bot.get_channel("400788192833437706"), content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+    react2 = await bot.send_message(bot.get_channel("402329246141251585"), content = "**:earth_americas: " + ctx.message.server.name + " ID: " + ctx.message.server.id + "**", embed = embed)
+    await bot.add_reaction(ctx.message, "🌎")
     
 @bot.command(aliases=["suggest", "sug", "sugg"], pass_context=True)
 async def suggestion(ctx,*, message: str):
@@ -1306,20 +1304,20 @@ async def tutinfo(ctx):
     await bot.say(embed = embed)
     
 @bot.command(pass_context=True)
-async def setup_starboard(ctx):
+async def setup_gpost(ctx):
     if not ctx.message.author.server_permissions.administrator:
       return await bot.say("**:x: | You cannot do that, get the owner or administrator to do this.**")
-    await bot.create_channel(ctx.message.server, 'starboard', type=discord.ChannelType.text)
-    await bot.say("**:white_check_mark: | I've made the channel, now IN THAT CHANNEL type `?config_starboardid`**")
+    await bot.create_channel(ctx.message.server, 'cosmos-global', type=discord.ChannelType.text)
+    await bot.say("**:white_check_mark: | I've made the channel, now IN THAT CHANNEL type `?config_gpostid`**")
 #    await bot.wait_for_message(author=ctx.message.author, content = "?config_starboardid")
 #   await bot.send_message(bot.get_channel("379454585808617472"), "**New starboard request - ID: " + ctx.message.channel.id + "\n" + "Name: " + ctx.message.channel.name + "Server Name: " + ctx.message.server.name + "\nRequester: " + ctx.message.author.name + "**"
 #    await bot.say("**:white_check_mark: | Done, soon you can now view the starboard in your server, make sure no one can actually type, except Cosmos, ofcourse. (be patient)**")
 
 @bot.command(pass_context=True)
-async def config_starboardid(ctx):
+async def config_gpostid(ctx):
     if not ctx.message.author.server_permissions.administrator:
       return await bot.say("**:x: | You cannot do that, get the owner or administrator to do this.**")
-    embed = discord.Embed(color = 0xffffff, title = "Starboard Request!") #, description = "Starboard ID: {}".format(message))
+    embed = discord.Embed(color = 0xffffff, title = "Cosmos-Global!") #, description = "Starboard ID: {}".format(message))
     embed.add_field(name = "Server", value = ctx.message.server.name)
     embed.add_field(name = "Server ID", value = ctx.message.server.id)
     embed.add_field(name = "Server User Count", value = ctx.message.server.member_count)
@@ -1437,7 +1435,7 @@ async def help(ctx):
    embed = discord.Embed(title = "Cosmos Commands", color = 0x6691D9, timestamp = datetime.datetime.utcnow(), description = "Cosmos's prefix is `?` If you need specific help on a command type `?help_<command>`")
    embed.set_author(name = '{} total commands'.format(cmds), icon_url = "https://cdn.discordapp.com/attachments/385625038444822539/388086240538525696/20171206_140705.jpg")
    embed.add_field(name = "Core Commands", value = "`help` | `info` | `invite` |  `msgdev` | `faq` | `betatesters` | `suggestion`")
-   embed.add_field(name = "Utility Commands", value = "`messagessent` | `mail` | `invitegenerator` | `setup_starboard` | `charinfo` | `starboard` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `avatar` | `servericon` | `urband` | `advert` | `timer`")
+   embed.add_field(name = "Utility Commands", value = "`messagessent` | `mail` | `invitegenerator` | `setup_gpost` | `charinfo` | `gpost` | `poll` | `serverinfo` | `channelinfo` | `userinfo` | `emojiinfo` | `roleinfo` | `avatar` | `servericon` | `urband` | `advert` | `timer`")
    embed.add_field(name = "Developer Commands", value = "`repeat` | `dm` | `announce` | `stop` | `servers` | `setwatching` | `setgame` | `setlistening` | `setstream`")
    embed.add_field(name = "Administrative Commands", value = "`nick` | `massnick` | `clearnicks` | `kick` | `ban` | `softban` | `mute` | `warn` | `gbans` | `addrole` | `removerole` | `createrole` | `deleterole` | `renamerole` | `clear`")
    embed.add_field(name = "Fun Commands", value = "`virus` | `ping` | `pong` | `rate` | `starterpack` | `coinflip` | `roll` | `choose` | `8ball` | `kill` | `hug` | `kiss` | `punch` | `slap` | `beatup` | `shoot` | `dicklength` | `amicool` | `dog` | `cat` | `neko` | `drake` | `salty` | `pun` | `yomomma` | `chucknorris` | `count` | `potatos` | `pick`")
@@ -1549,7 +1547,7 @@ async def help_timer():
     await bot.say(embed = h)
     
 @bot.command()
-async def help_setup_starboard():
+async def help_setup_gpost():
     h = discord.Embed(title = "Setup_starboard Command", color = 0x6691D9, description = "Begins a setup wizard for the beta starboard")
     h.add_field(name = "Usage", value = "`?setup_starboard <the rest is interactive setup>`")
     h.add_field(name = "Note", value = "PLEASE make sure you follow all steps correctly")
@@ -1584,7 +1582,7 @@ async def help_charinfo():
     await bot.say(embed = h)
 
 @bot.command()
-async def help_starboard():
+async def help_gpost():
     h = discord.Embed(title = "Starboard Command", color = 0x6691D9, description = "Posts a message in any starboard channel that Rapid sets (ask Rapid#0501 for more info)")
     h.add_field(name = "Usage", value = "`?starboard <message>`")
     h.add_field(name = "Note", value = "Empty...")
