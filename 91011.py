@@ -1150,8 +1150,8 @@ async def emojiinfo(ctx, *,emoji: discord.Emoji):
     embed.set_thumbnail(url = emoji.url)
     await bot.say(embed = embed)
 
-@bot.command()
-async def urband(*msg):
+@bot.command(pass_context=True)
+async def urband(ctx, *, msg):
 
     word = ' '.join(msg)
     api = "http://api.urbandictionary.com/v0/define"
