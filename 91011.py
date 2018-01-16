@@ -922,8 +922,13 @@ async def rape(ctx, *, member: discord.Member = None ):
     at=ctx.message.author.name
     m=member.name
     if ctx.message.server.id == "374358230299705346":
-      r=discord.Embed(color = ctx.message.author.color, description = (random.choice([f"**{m}** was intesively raped by **{at}**", f"**{m} was penetrated by {at}!**", f"This random cum-stain named **{m}**, was deeply raped by some perv named **{at}.**", f"**{m}** was double-penetrated by **{at}**"])))
-      await bot.say(embed=r)
+      if member.id == "385622427977121813":
+          await bot.say("**Screw off twat, can't rape me mf.**")
+      elif member.id == "371001497342836737":
+          await bot.say("**Bruh, don't touch my Rapid you cumstain.**")
+      else:
+          r=discord.Embed(color = ctx.message.author.color, description = (random.choice([f"**{m}** was intesively raped by **{at}**", f"**{m} was penetrated by {at}!**", f"This random cum-stain named **{m}**, was deeply raped by some perv named **{at}.**", f"**{m}** was double-penetrated by **{at}**"])))
+          await bot.say(embed=r)
     
 @bot.command(pass_context=True)
 async def kill(ctx, *, member: discord.Member = None):
