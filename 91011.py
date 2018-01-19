@@ -1862,7 +1862,7 @@ class botsorgapi:
 
     async def send(self):
         dump = json.dumps({
-            'server_count': len(self.bot.guilds)
+            'server_count': len(bot.servers)
         })
         head = {
             'authorization': os.environ.get('BOTS.ORGTOKEN'), # heroku config vars
