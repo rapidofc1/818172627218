@@ -1851,8 +1851,7 @@ async def randomcommand():
     rc.add_field(name="About", value="Commands you see here, and not in the **help** command, are for testing.")
     await bot.say(embed=rc)
             
-        uri = 'https://discordbots.org/api'
-
+uri = 'https://discordbots.org/api'
 class botsorgapi:
     def __init__(self, bot):
         self.bot = bot
