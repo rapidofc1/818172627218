@@ -1851,6 +1851,39 @@ async def randomcommand():
     rc.add_field(name="About", value="Commands you see here, and not in the **help** command, are for testing.")
     await bot.say(embed=rc)
             
+        uri = 'https://discordbots.org/api'
+
+class botsorgapi:
+    def __init__(self, bot):
+        self.bot = bot
+        self.session = aiohttp.ClientSession()
+
+    def __unload(self):
+        self.bot.loop.create_task(self.session.close())
+
+    async def send(self):
+        dump = json.dumps({
+            'server_count': len(self.bot.guilds)
+        })
+        head = {
+            'authorization': os.environ.get('BOTS.ORGTOKEN'), # heroku config vars
+            'content-type' : 'application/json'
+        }
+
+        url = '{0}/bots/{bot-id}/stats'.format(uri)
+
+        async with self.session.post(url, data=dump, headers=head) as resp:
+            print('returned {0.status} for {1}'.format(resp, dump))
+
+    async def on_server_join(self, server):
+        await self.send()
+
+    async def on_server_remove(self, server):
+        await self.send()
+
+    async def on_ready(self):
+        await self.send()
+        
 bot.loop.create_task(auto_message())
 bot.loop.create_task(my_background_task())
 if not os.environ.get('TOKEN'):
