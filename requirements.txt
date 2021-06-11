@@ -43,7 +43,7 @@ Unidecode==0.4.21
 urllib3==1.22
 Voice==0.1.0
 wcwidth==0.1.7
-websockets==3.4
+websockets==9.1
 yarl==0.16.0
 youtube-dl==2017.12.14
 zope.component==4.4.1
